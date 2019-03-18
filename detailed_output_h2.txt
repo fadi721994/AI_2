@@ -4,7 +4,7 @@ Solution: AR1 PU1 BU1 RL2 CL3 QD2 OD3 XR5
 Solution depth: 8
 Scanned nodes: 554
 Penetrance: 0.01444043321299639
-Run time: 0.9614307880401611
+Run time: 0.6323096752166748
 Heuristic function average: 3.259729816661306
 EBF: 2.2026156497371914
 Minimum tree depth: 4
@@ -20,7 +20,7 @@ Solution: XR1 AD1 OL3 BU1 CU2 EL1 PD2 XR5
 Solution depth: 8
 Scanned nodes: 285
 Penetrance: 0.028070175438596492
-Run time: 0.5166187286376953
+Run time: 0.33011794090270996
 Heuristic function average: 4.909542390918766
 EBF: 2.0270086757077235
 Minimum tree depth: 4
@@ -36,7 +36,7 @@ Solution: OU2 AR1 BU1 CL1 PU3 AR2 OD3 XR1 BU3 XL1 OU3 AL3 PD3 OD3 XR5
 Solution depth: 15
 Scanned nodes: 440
 Penetrance: 0.03409090909090909
-Run time: 0.5654864311218262
+Run time: 0.4079093933105469
 Heuristic function average: 2.8651436993367723
 EBF: 1.5004798872765484
 Minimum tree depth: 11
@@ -52,7 +52,7 @@ Solution: OD3 XL1 AU3 XR1 OU3 RL2 QL3 PD3 XR5
 Solution depth: 9
 Scanned nodes: 161
 Penetrance: 0.055900621118012424
-Run time: 0.270277738571167
+Run time: 0.14760708808898926
 Heuristic function average: 2.612661674608577
 EBF: 1.758744997333864
 Minimum tree depth: 7
@@ -68,7 +68,7 @@ Solution: EL1 GD1 AR1 PU1 RL1 EL2 FL3 QD2 OD3 XR5
 Solution depth: 10
 Scanned nodes: 715
 Penetrance: 0.013986013986013986
-Run time: 1.616678237915039
+Run time: 0.9634239673614502
 Heuristic function average: 4.639903906941459
 EBF: 1.929437007240712
 Minimum tree depth: 5
@@ -84,7 +84,7 @@ Solution: XL1 EU3 DR1 FU1 RL3 QD1 OD2 PD2 XR6
 Solution depth: 9
 Scanned nodes: 716
 Penetrance: 0.012569832402234637
-Run time: 1.3573715686798096
+Run time: 1.3414127826690674
 Heuristic function average: 5.228296667105783
 EBF: 2.0759292970792296
 Minimum tree depth: 5
@@ -100,7 +100,7 @@ Solution: FD1 CD1 DD1 BR2 EU1 XR1 AD3 XL1 ED1 BL1 DU1 BL2 EU1 CD2 XR5
 Solution depth: 15
 Scanned nodes: 1653
 Penetrance: 0.009074410163339383
-Run time: 2.9211924076080322
+Run time: 2.057501792907715
 Heuristic function average: 3.7568815182082407
 EBF: 1.6388964841815554
 Minimum tree depth: 10
@@ -116,7 +116,7 @@ Solution: AL1 CU1 BL2 AL2 DU2 EU2 XR3 IU2 PL1 QL1 GL1 OD3 XR3
 Solution depth: 13
 Scanned nodes: 741
 Penetrance: 0.017543859649122806
-Run time: 1.068143606185913
+Run time: 0.7061116695404053
 Heuristic function average: 5.467661691542289
 EBF: 1.6624754730848756
 Minimum tree depth: 8
@@ -132,7 +132,7 @@ Solution: OD1 XR1 PU3 QL1 DD2 XR1 AD1 BL1 EL1 CL1 FU2 XR4
 Solution depth: 12
 Scanned nodes: 195
 Penetrance: 0.06153846153846154
-Run time: 0.2812483310699463
+Run time: 0.2124333381652832
 Heuristic function average: 2.6080634500991406
 EBF: 1.5518016796732643
 Minimum tree depth: 8
@@ -148,7 +148,7 @@ Solution: CL1 OU1 QR2 XR2 BD2 DR1 AR1 BD2 PU2 QL3 EU1 OD1 CR1 HL1 XL2 EU3 FL1 OD
 Solution depth: 19
 Scanned nodes: 1390
 Penetrance: 0.013669064748201438
-Run time: 2.028578758239746
+Run time: 1.5368914604187012
 Heuristic function average: 2.097084938850729
 EBF: 1.463598081686108
 Minimum tree depth: 14
@@ -164,7 +164,7 @@ Solution: OD3 XL1 BU2 QL1 EU1 RR1 EU2 QR1 BD3 QL1 XR1 OU3 QL2 PD1 AR3 PU1 QR1 OD
 Solution depth: 29
 Scanned nodes: 747
 Penetrance: 0.038821954484605084
-Run time: 0.9115631580352783
+Run time: 0.9155523777008057
 Heuristic function average: 3.072783271194683
 EBF: 1.2562614143047257
 Minimum tree depth: 27
@@ -180,7 +180,7 @@ Solution: BR2 PU1 QL2 CU3 QR2 PD1 BL1 CU1 RR3 PD2 XR1 AD1 BL2 XR2 PU3 QL1 RL1 OD
 Solution depth: 19
 Scanned nodes: 475
 Penetrance: 0.04
-Run time: 0.7101023197174072
+Run time: 0.4667520523071289
 Heuristic function average: 3.5963324048282264
 EBF: 1.3831797145512519
 Minimum tree depth: 13
@@ -196,7 +196,7 @@ Solution: OU1 ED1 FR1 DD2 XL2 GU3 FL1 OD1 CD1 BR2 GU1 KL1 XL1 DU3 HL2 FL1 CD2 OD
 Solution depth: 19
 Scanned nodes: 5281
 Penetrance: 0.0035978034463169852
-Run time: 9.182453632354736
+Run time: 6.964384078979492
 Heuristic function average: 4.643044176028381
 EBF: 1.5701184969049966
 Minimum tree depth: 12
@@ -212,7 +212,7 @@ Solution: JL1 GD1 ED1 DD1 XL2 BD1 AR3 BU1 XR2 DU3 EU3 HL2 XL2 IU2 JL1 FD1 JL2 ID
 Solution depth: 19
 Scanned nodes: 5207
 Penetrance: 0.003648934127136547
-Run time: 12.262223482131958
+Run time: 7.652543067932129
 Heuristic function average: 3.2952899190841314
 EBF: 1.568952778096136
 Minimum tree depth: 14
@@ -228,7 +228,7 @@ Solution: IR1 HR1 RD1 XL1 QD1 FU1 GL1 XL1 PD1 EU1 GL1 OD1 BR1 DR2 FU2 AL1 EU2 XR
 Solution depth: 27
 Scanned nodes: 519
 Penetrance: 0.05202312138728324
-Run time: 0.7639613151550293
+Run time: 0.49965739250183105
 Heuristic function average: 5.686373695858363
 EBF: 1.2605548682721448
 Minimum tree depth: 24
@@ -244,7 +244,7 @@ Solution: PD1 XL1 FD1 CD1 BR1 DD2 XL2 EL2 PU3 QL1 GR2 FD1 QL1 CD3 QR1 FU1 GL2 QR
 Solution depth: 24
 Scanned nodes: 1925
 Penetrance: 0.012467532467532468
-Run time: 3.6592185497283936
+Run time: 2.559157371520996
 Heuristic function average: 3.4808084239130435
 EBF: 1.3704124029786864
 Minimum tree depth: 21
@@ -260,7 +260,7 @@ Solution: BL1 PU2 GU2 FU2 QR3 DD1 XR1 RR3 DD1 ER1 AD3 XL1 AD1 EL1 DU2 QL1 GD1 QL
 Solution depth: 29
 Scanned nodes: 1894
 Penetrance: 0.015311510031678986
-Run time: 3.3450586795806885
+Run time: 2.38662052154541
 Heuristic function average: 5.560752358095663
 EBF: 1.2972184072047455
 Minimum tree depth: 22
@@ -276,7 +276,7 @@ Solution: RR1 PD1 XL1 DR2 QR2 BD3 CR1 RR2 BD1 AR1 DR1 XR1 PU3 QL3 OD2 CR3 AR3 OU
 Solution depth: 29
 Scanned nodes: 1485
 Penetrance: 0.019528619528619527
-Run time: 1.915879726409912
+Run time: 1.7732605934143066
 Heuristic function average: 2.393798809247661
 EBF: 1.286381772613083
 Minimum tree depth: 28
@@ -292,7 +292,7 @@ Solution: DU2 XL2 AD1 BL1 JU1 EL2 FU1 OR2 AD3 XR2 DD1 BL2 ER2 DD3 XL2 EL2 AU4 ER
 Solution depth: 23
 Scanned nodes: 464
 Penetrance: 0.04956896551724138
-Run time: 0.4527900218963623
+Run time: 0.34108829498291016
 Heuristic function average: 2.588820602868013
 EBF: 1.3059771078705404
 Minimum tree depth: 22
@@ -308,7 +308,7 @@ Solution: CD1 BR2 DU2 EU2 FL2 CD1 QL1 PD1 FL1 ED1 XR6
 Solution depth: 11
 Scanned nodes: 330
 Penetrance: 0.03333333333333333
-Run time: 0.4777240753173828
+Run time: 0.31316375732421875
 Heuristic function average: 4.083083832335329
 EBF: 1.694165418849571
 Minimum tree depth: 6
@@ -324,7 +324,7 @@ Solution: PD2 XL1 QR2 BD1 AR1 BD3 XR1 PU3 QL3 OD1 AR3 OU1 QR1 PD3 XL1 QR2 BU4 XR
 Solution depth: 23
 Scanned nodes: 238
 Penetrance: 0.09663865546218488
-Run time: 0.22739243507385254
+Run time: 0.15658092498779297
 Heuristic function average: 2.2185897435897437
 EBF: 1.2686138045757518
 Minimum tree depth: 22
@@ -340,7 +340,7 @@ Solution: BU1 GR1 XL1 AD3 XR1 BD1 OL3 PU1 EL1 QR1 DD1 HU2 GR1 QR1 AD1 EL2 PD2 CL
 Solution depth: 29
 Scanned nodes: 2359
 Penetrance: 0.012293344637558287
-Run time: 3.8925957679748535
+Run time: 2.7307024002075195
 Heuristic function average: 3.3123268698060944
 EBF: 1.3070763704569022
 Minimum tree depth: 24
@@ -356,7 +356,7 @@ Solution: QL2 DD1 EL1 PD1 OR1 AU1 XL3 AD1 OL1 PU1 ER1 DU1 QR3 CD1 AD1 BL2 DU2 EL
 Solution depth: 30
 Scanned nodes: 1299
 Penetrance: 0.023094688221709007
-Run time: 1.7483267784118652
+Run time: 1.5678095817565918
 Heuristic function average: 4.755321135175504
 EBF: 1.2699510213859955
 Minimum tree depth: 25
@@ -372,7 +372,7 @@ Solution: OR1 CU1 DD1 XL2 AD1 BL1 EU2 HR1 GU1 DD1 FL1 HR2 GU1 OR2 AD3 FR2 XR2 CD
 Solution depth: 28
 Scanned nodes: 4104
 Penetrance: 0.00682261208576998
-Run time: 7.460057020187378
+Run time: 6.263259172439575
 Heuristic function average: 2.395495516157886
 EBF: 1.3459939868843591
 Minimum tree depth: 27
@@ -388,7 +388,7 @@ Solution: PD1 XL1 CL1 EU1 OU1 QR2 BD4 DR1 XR1 AR1 PU3 QL3 GU3 QR1 PD1 AL1 PD2 DL
 Solution depth: 31
 Scanned nodes: 6712
 Penetrance: 0.0046185935637663884
-Run time: 12.946394920349121
+Run time: 10.220678806304932
 Heuristic function average: 4.6576988765453375
 EBF: 1.3287608905333113
 Minimum tree depth: 23
@@ -404,7 +404,7 @@ Solution: ED1 RL1 CD2 OL1 DU2 XR1 AD1 OL1 GU1 HR1 CD1 PU1 RR2 AD2 XL1 OL1 AD1 RL
 Solution depth: 33
 Scanned nodes: 3806
 Penetrance: 0.008670520231213872
-Run time: 6.542511463165283
+Run time: 4.567791223526001
 Heuristic function average: 4.250283333843845
 EBF: 1.2838049742017914
 Minimum tree depth: 26
@@ -420,7 +420,7 @@ Solution: PU2 ER1 OD2 CR2 BR2 DU2 XR1 AD3 XL1 DD2 CL3 DU1 AD1 BL2 OU2 EL4 DD1 CR
 Solution depth: 31
 Scanned nodes: 2104
 Penetrance: 0.014733840304182509
-Run time: 3.2343544960021973
+Run time: 2.4574315547943115
 Heuristic function average: 4.611351611351611
 EBF: 1.2799559505068336
 Minimum tree depth: 25
@@ -436,7 +436,7 @@ Solution: QU1 GR2 FR2 DD1 CD1 AD1 OR3 PU1 EL2 AD1 BL1 QU1 EL1 RR1 PD2 BL3 AU1 PU
 Solution depth: 32
 Scanned nodes: 1506
 Penetrance: 0.021248339973439574
-Run time: 2.1662073135375977
+Run time: 1.7423427104949951
 Heuristic function average: 4.914077388350319
 EBF: 1.2569182450572653
 Minimum tree depth: 29
@@ -452,7 +452,7 @@ Solution: BU1 ER1 GU1 RR1 CD1 DL1 GU2 EL1 FR2 AD2 HU1 XR1 RR2 AD1 DR1 CU3 DL1 OR
 Solution depth: 37
 Scanned nodes: 4278
 Penetrance: 0.008648901355773725
-Run time: 7.840043067932129
+Run time: 5.667850017547607
 Heuristic function average: 5.9907521740272704
 EBF: 1.253549946561703
 Minimum tree depth: 36
@@ -468,7 +468,7 @@ Solution: DR1 FR1 ER1 CR1 OD3 XL1 AD1 PL1 QU3 DR1 FR1 BD3 DL1 QD1 PR1 AU1 XR1 OU
 Solution depth: 36
 Scanned nodes: 1026
 Penetrance: 0.03508771929824561
-Run time: 1.2795798778533936
+Run time: 0.9145543575286865
 Heuristic function average: 2.5910643889618923
 EBF: 1.2123917773450583
 Minimum tree depth: 32
@@ -484,7 +484,7 @@ Solution: AR1 DU2 XL1 QU2 FR3 QD2 XR1 DD1 AL1 DD2 XL1 QU3 EL2 BD1 CL1 PU1 FR1 BD
 Solution depth: 41
 Scanned nodes: 3685
 Penetrance: 0.011126187245590231
-Run time: 5.481348276138306
+Run time: 4.340388536453247
 Heuristic function average: 4.290126269200729
 EBF: 1.2217610631670928
 Minimum tree depth: 37
@@ -500,7 +500,7 @@ Solution: BD1 CL1 PU3 FR1 KU1 HR4 KD1 FL1 PD1 CR1 BU1 DD1 EL1 OD3 XR3 OU3 ER1 DU
 Solution depth: 41
 Scanned nodes: 484
 Penetrance: 0.08471074380165289
-Run time: 0.5465395450592041
+Run time: 0.36302900314331055
 Heuristic function average: 4.198821796759941
 EBF: 1.1627438020687293
 Minimum tree depth: 35
@@ -516,7 +516,7 @@ Solution: BL1 PU3 ER1 GU3 EL1 QR1 ID1 DL1 EL1 HU3 ER1 RD1 BL1 HU1 ER1 FR3 GD2 QR
 Solution depth: 44
 Scanned nodes: 2672
 Penetrance: 0.016467065868263474
-Run time: 4.841059923171997
+Run time: 3.9294967651367188
 Heuristic function average: 6.079220013477089
 EBF: 1.1964171965413457
 Minimum tree depth: 39
@@ -532,7 +532,7 @@ Solution: XR1 AD1 RL3 BU1 PU1 HR1 DD1 CU1 QR3 AD1 EU1 IR1 AD2 XL1 EU2 QL3 DU2 FL
 Solution depth: 46
 Scanned nodes: 3800
 Penetrance: 0.012105263157894737
-Run time: 6.207407474517822
+Run time: 5.893293857574463
 Heuristic function average: 5.711992825333993
 EBF: 1.1962484347755973
 Minimum tree depth: 40
@@ -548,7 +548,7 @@ Solution: PD1 AR1 BU1 GR1 KD1 QL1 FU2 EU2 DR3 ED2 QR1 BD1 AL1 PU1 KU1 GL1 FU1 QR
 Solution depth: 50
 Scanned nodes: 3751
 Penetrance: 0.013329778725673154
-Run time: 6.223365068435669
+Run time: 4.747310400009155
 Heuristic function average: 5.371862068965517
 EBF: 1.1789162155104829
 Minimum tree depth: 44
@@ -564,7 +564,7 @@ Solution: DD1 RR1 OD1 XR1 PL1 AL1 QU1 CR1 RR2 EU3 RL1 QD1 AR1 PR1 OU1 RL2 DU1 GR
 Solution depth: 45
 Scanned nodes: 1794
 Penetrance: 0.02508361204013378
-Run time: 3.2074263095855713
+Run time: 2.1642141342163086
 Heuristic function average: 2.060192307692308
 EBF: 1.1811557413354155
 Minimum tree depth: 40
@@ -580,7 +580,7 @@ Solution: GR1 QD1 XL1 BD1 CL2 PU1 OU1 RR2 BD2 XR1 QU1 GL1 BD1 RL2 OD1 CR1 AR1 DR
 Solution depth: 50
 Scanned nodes: 1575
 Penetrance: 0.031746031746031744
-Run time: 2.3138153553009033
+Run time: 2.168203115463257
 Heuristic function average: 5.4114313870411435
 EBF: 1.158632245844815
 Minimum tree depth: 39
@@ -596,7 +596,7 @@ Solution: OL1 RU2 GR1 ER1 CD2 BR2 DU1 FU1 QL3 CD1 EL1 RD1 OR1 DU1 XR1 AD3 XL1 DD
 Solution depth: 52
 Scanned nodes: 2972
 Penetrance: 0.017496635262449527
-Run time: 4.423176288604736
+Run time: 2.9221887588500977
 Heuristic function average: 4.395928686630922
 EBF: 1.1662439400127145
 Minimum tree depth: 47
@@ -612,7 +612,7 @@ Solution: HR1 CD1 AD1 OL1 RU2 HR1 ER1 IR2 BD3 EL1 RD1 OR1 AU1 XR3 AD1 OL1 RU1 CD
 Solution depth: 55
 Scanned nodes: 3511
 Penetrance: 0.015665052691540872
-Run time: 4.669522047042847
+Run time: 3.6512398719787598
 Heuristic function average: 3.869042224510814
 EBF: 1.16001172438306
 Minimum tree depth: 50
@@ -628,7 +628,7 @@ Solution: IR1 ED1 QR1 OD1 AL1 DU1 PU1 QR2 FU1 HR1 CD2 OD2 XL3 BD1 DD1 AR3 DU1 XR
 Solution depth: 57
 Scanned nodes: 1699
 Penetrance: 0.033549146556798116
-Run time: 2.387617588043213
+Run time: 1.8630192279815674
 Heuristic function average: 3.8564118712115247
 EBF: 1.1393838498593678
 Minimum tree depth: 47
@@ -643,7 +643,7 @@ Overall summary
 Solution depth avg: 28.45
 Scanned nodes avg: 1963.8
 Penetrance avg: 0.025558057197537697
-Run time avg: 3.3226685643196108
+Run time avg: 2.513482075929642
 Heuristic overall avg: 4.019701193409002
 EBF avg: 1.4093185198913638
 Min tree depth avg: 22.8

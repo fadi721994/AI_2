@@ -56,12 +56,8 @@ class Board:
 
     # Build the grid using where the cars are placed.
     def build_grid(self, width=6, height=6):
-        self.grid = []
-        for i in range(width):
-            row = []
-            for j in range(height):
-                row.append(".")
-            self.grid.append(row)
+        self.grid = [[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."],
+                     [".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
         for car_name, car in self.cars.items():
             if car.orientation == Orientation.HORIZONTAL:
                 for i in range(car.size):
