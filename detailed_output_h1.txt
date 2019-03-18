@@ -1,0 +1,652 @@
+Board number 1
+---------------------------------------------------------------
+Solution: AR1 PU1 BU1 RL2 CL3 QD2 OD3 XR5
+Solution depth: 8
+Scanned nodes: 795
+Penetrance: 0.010062893081761006
+Run time: 1.5418779850006104
+Heuristic function average: 1.8596173440507189
+EBF: 2.3043364580961896
+Minimum tree depth: 5
+Average tree depth: 7.6479591836734695
+Maximum tree depth: 9
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 2
+---------------------------------------------------------------
+Solution: XR1 AD1 OL3 BU1 EL1 CU2 PD2 XR5
+Solution depth: 8
+Scanned nodes: 877
+Penetrance: 0.009122006841505131
+Run time: 1.5478639602661133
+Heuristic function average: 2.604571554770318
+EBF: 2.332786262681216
+Minimum tree depth: 5
+Average tree depth: 7.424295774647887
+Maximum tree depth: 9
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 3
+---------------------------------------------------------------
+Solution: OU2 AR1 BU1 CL1 PU3 AR2 OD3 XR1 BU3 XL1 OU3 AL3 OD3 PD3 XR5
+Solution depth: 15
+Scanned nodes: 451
+Penetrance: 0.03325942350332594
+Run time: 0.5275883674621582
+Heuristic function average: 1.7719550131610433
+EBF: 1.5029519726969554
+Minimum tree depth: 11
+Average tree depth: 14.625
+Maximum tree depth: 17
+Solution has less steps than the suggested solution
+---------------------------------------------------------------
+
+
+Board number 4
+---------------------------------------------------------------
+Solution: OD3 XL1 AU3 XR1 OU3 RL2 QL3 PD3 XR5
+Solution depth: 9
+Scanned nodes: 225
+Penetrance: 0.04
+Run time: 0.27426719665527344
+Heuristic function average: 1.5196403218173213
+EBF: 1.825381367283761
+Minimum tree depth: 8
+Average tree depth: 9.410526315789474
+Maximum tree depth: 11
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 5
+---------------------------------------------------------------
+Solution: EL1 GD1 AR1 PU1 RL1 FL2 EL2 QD2 FL1 OD3 XR5
+Solution depth: 11
+Scanned nodes: 1146
+Penetrance: 0.009598603839441536
+Run time: 2.3178045749664307
+Heuristic function average: 2.527018436109345
+EBF: 1.8971763079213186
+Minimum tree depth: 6
+Average tree depth: 9.576736672051696
+Maximum tree depth: 12
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 6
+---------------------------------------------------------------
+Solution: XL1 EU2 DR1 FU1 RL3 QD1 EU1 OD2 PD2 XR6
+Solution depth: 10
+Scanned nodes: 1151
+Penetrance: 0.008688097306689836
+Run time: 2.151249647140503
+Heuristic function average: 3.1056202362006866
+EBF: 2.0235201451322404
+Minimum tree depth: 7
+Average tree depth: 8.659574468085108
+Maximum tree depth: 10
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 7
+---------------------------------------------------------------
+Solution: FD1 DD1 CD1 BR2 EU1 XR1 AD3 XL1 ED1 BL1 DU1 BL2 EU1 CD2 XR5
+Solution depth: 15
+Scanned nodes: 1764
+Penetrance: 0.008503401360544218
+Run time: 2.7646098136901855
+Heuristic function average: 1.9589647812166489
+EBF: 1.6460129159650687
+Minimum tree depth: 10
+Average tree depth: 12.968181818181819
+Maximum tree depth: 16
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 8
+---------------------------------------------------------------
+Solution: AL1 CU1 AL1 BL2 EU2 GL1 AL1 DU2 IU1 QL1 XR3 IU1 PL1 OD3 XR3
+Solution depth: 15
+Scanned nodes: 931
+Penetrance: 0.01611170784103115
+Run time: 1.458101749420166
+Heuristic function average: 2.756147220046985
+EBF: 1.577356932052394
+Minimum tree depth: 10
+Average tree depth: 13.842105263157896
+Maximum tree depth: 15
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 9
+---------------------------------------------------------------
+Solution: OD1 XR1 PU3 QL1 DD2 XR1 AD1 BL1 EL1 CL1 FU2 XR4
+Solution depth: 12
+Scanned nodes: 143
+Penetrance: 0.08391608391608392
+Run time: 0.17852377891540527
+Heuristic function average: 1.5998107852412489
+EBF: 1.5122073216560625
+Minimum tree depth: 8
+Average tree depth: 9.870229007633588
+Maximum tree depth: 12
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 10
+---------------------------------------------------------------
+Solution: CL1 OU1 QR2 XR2 BD2 DR1 AR1 BD2 PU2 QL3 EU1 HL1 OD1 CR1 XL2 EU3 FL1 OD2 XR5
+Solution depth: 19
+Scanned nodes: 1421
+Penetrance: 0.013370865587614356
+Run time: 2.0744552612304688
+Heuristic function average: 1.0724720945502297
+EBF: 1.4652981594703784
+Minimum tree depth: 15
+Average tree depth: 17.427272727272726
+Maximum tree depth: 19
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 11
+---------------------------------------------------------------
+Solution: OD3 XL1 BU2 QL1 EU3 QR1 RR1 BD3 XR1 OU3 QL3 PD1 AR3 PU1 QR1 OD3 XL1 QR2 BU4 XR1 QL1 ED2 OU3 QL2 RL3 PD3 XR5
+Solution depth: 27
+Scanned nodes: 778
+Penetrance: 0.03470437017994859
+Run time: 0.9684112071990967
+Heuristic function average: 1.6419003115264799
+EBF: 1.2795973099358273
+Minimum tree depth: 25
+Average tree depth: 27.027027027027028
+Maximum tree depth: 29
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 12
+---------------------------------------------------------------
+Solution: BR2 PU1 QL2 CU3 QR2 PD1 BL1 CU1 RR3 PD2 XR3 PU1 RL1 AD1 BL2 PU2 QL1 OD3 XR3
+Solution depth: 19
+Scanned nodes: 550
+Penetrance: 0.034545454545454546
+Run time: 0.7549827098846436
+Heuristic function average: 2.014486921529175
+EBF: 1.3938935717079532
+Minimum tree depth: 13
+Average tree depth: 16.085714285714285
+Maximum tree depth: 19
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 13
+---------------------------------------------------------------
+Solution: OU1 ED1 FR1 DD2 XL2 GU3 FL1 OD1 CD1 BR2 GU1 HL1 KL1 OD2 XL1 DU1 HL1 DU2 FL1 CD2 XR6
+Solution depth: 21
+Scanned nodes: 6620
+Penetrance: 0.0031722054380664655
+Run time: 11.464354991912842
+Heuristic function average: 2.525179377049726
+EBF: 1.520357141841331
+Minimum tree depth: 13
+Average tree depth: 17.84664536741214
+Maximum tree depth: 22
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 14
+---------------------------------------------------------------
+Solution: DD1 ED1 XL2 BD1 AR3 BU1 JL1 GD1 XR2 EU3 DU3 HL2 XL2 IU2 JL1 FD1 JL2 ID1 XR6
+Solution depth: 19
+Scanned nodes: 6158
+Penetrance: 0.003085417343293277
+Run time: 12.514548063278198
+Heuristic function average: 1.7827513956248444
+EBF: 1.5828661581266308
+Minimum tree depth: 14
+Average tree depth: 18.784219703574543
+Maximum tree depth: 22
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 15
+---------------------------------------------------------------
+Solution: AL1 IR1 HR1 BR1 QD1 RD1 XL2 EU1 FU1 GL2 PD1 OD1 DR2 FU2 EU2 XR2 RU1 HL1 IL1 PD1 QU1 HL1 IL1 OD1 XR4
+Solution depth: 25
+Scanned nodes: 519
+Penetrance: 0.04816955684007707
+Run time: 0.6153559684753418
+Heuristic function average: 2.84634840341448
+EBF: 1.2841232057862908
+Minimum tree depth: 23
+Average tree depth: 23.0
+Maximum tree depth: 23
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 16
+---------------------------------------------------------------
+Solution: PD1 XL1 CD1 BR1 FD1 DD2 XL2 PU1 GR2 FD1 EL2 PU2 QL2 CD3 QR2 FU1 GL2 PD3 XR3 PU3 QL1 OD3 XR3
+Solution depth: 23
+Scanned nodes: 2063
+Penetrance: 0.011148812409112942
+Run time: 3.234354019165039
+Heuristic function average: 1.7957363727507782
+EBF: 1.3935054195413266
+Minimum tree depth: 22
+Average tree depth: 24.114285714285714
+Maximum tree depth: 26
+Solution has less steps than the suggested solution
+---------------------------------------------------------------
+
+
+Board number 17
+---------------------------------------------------------------
+Solution: BL1 GU2 PU2 FU2 RR3 QR3 DD2 XR1 ER1 AD3 XL1 AD1 EL1 DU2 QL1 GD1 QL1 FD1 BL1 OR2 DU2 XR1 ER1 AU2 QL1 RL3 PD2 XR5
+Solution depth: 28
+Scanned nodes: 2001
+Penetrance: 0.013993003498250875
+Run time: 3.4976465702056885
+Heuristic function average: 2.818273518793799
+EBF: 1.3119028687371155
+Minimum tree depth: 21
+Average tree depth: 26.754716981132077
+Maximum tree depth: 30
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 18
+---------------------------------------------------------------
+Solution: RR1 PD1 XL1 QR2 DR3 BD3 XR1 CR1 AR1 RR2 BD1 PU3 QL3 OD2 CR3 AR3 OU2 QR1 PD3 XL1 QR2 BU4 XR1 PU3 RL3 QL3 OD3 XR5
+Solution depth: 28
+Scanned nodes: 1493
+Penetrance: 0.018754186202277295
+Run time: 2.0285768508911133
+Heuristic function average: 1.2146202871842124
+EBF: 1.2982528326341338
+Minimum tree depth: 27
+Average tree depth: 28.142857142857142
+Maximum tree depth: 29
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 19
+---------------------------------------------------------------
+Solution: DU2 XL2 AD1 BL1 JU1 FU1 OR2 EL2 AD3 XR2 DD1 BL2 ER2 DD3 XL2 EL2 AU4 XR2 ER2 DU2 OL2 FD1 XR4
+Solution depth: 23
+Scanned nodes: 465
+Penetrance: 0.04946236559139785
+Run time: 0.717083215713501
+Heuristic function average: 1.2963179427235534
+EBF: 1.306099356079035
+Minimum tree depth: 22
+Average tree depth: 22.555555555555557
+Maximum tree depth: 23
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 20
+---------------------------------------------------------------
+Solution: CD1 BR2 DU2 EU2 FL2 CD1 QL1 PD1 FL1 ED1 XR6
+Solution depth: 11
+Scanned nodes: 397
+Penetrance: 0.027707808564231738
+Run time: 0.5076425075531006
+Heuristic function average: 2.2423017107309486
+EBF: 1.722874655946606
+Minimum tree depth: 7
+Average tree depth: 9.377697841726619
+Maximum tree depth: 12
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 21
+---------------------------------------------------------------
+Solution: PD2 XL1 BD1 AR1 QR2 BD3 XR1 PU3 QL3 OD1 AR3 OU1 QR1 PD3 XL1 QR2 BU4 XR1 PU3 QL3 RL3 OD3 XR5
+Solution depth: 23
+Scanned nodes: 246
+Penetrance: 0.09349593495934959
+Run time: 0.2543196678161621
+Heuristic function average: 1.1335403726708075
+EBF: 1.2704386578209437
+Minimum tree depth: 23
+Average tree depth: 23.428571428571427
+Maximum tree depth: 24
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 22
+---------------------------------------------------------------
+Solution: BU1 GR1 XL1 AD3 XR1 BD1 OL3 PU1 EL1 HU1 QR2 DD1 HU1 GR1 AD1 EL2 PD2 CL3 PU2 ER2 AU1 HU2 FU1 DU1 ER1 QL3 PD3 XR5
+Solution depth: 28
+Scanned nodes: 3036
+Penetrance: 0.00922266139657444
+Run time: 5.131284713745117
+Heuristic function average: 1.712381450227765
+EBF: 1.331582013553071
+Minimum tree depth: 26
+Average tree depth: 29.11455108359133
+Maximum tree depth: 32
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 23
+---------------------------------------------------------------
+Solution: QL2 DD1 EL1 PD1 OR1 AU1 XL3 AD1 OL1 PU1 ER1 DU1 QR3 CD1 AD1 BL2 DU2 EL1 PD1 BL1 OR1 AU2 EL3 CU2 FL4 CD1 QL1 PD2 DD2 XR6
+Solution depth: 30
+Scanned nodes: 1451
+Penetrance: 0.02067539627842867
+Run time: 2.0435376167297363
+Heuristic function average: 2.5035827362106318
+EBF: 1.2746440227226308
+Minimum tree depth: 27
+Average tree depth: 29.631410256410255
+Maximum tree depth: 33
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 24
+---------------------------------------------------------------
+Solution: OR1 CU1 DD1 XL2 AD1 BL1 HR1 DD1 FL1 EU2 GU2 OR2 HR2 AD3 XR2 CD1 FR2 BL2 CD3 FL2 XL2 AU4 FR2 XR2 CU2 OL2 GD1 XR4
+Solution depth: 28
+Scanned nodes: 4108
+Penetrance: 0.006815968841285297
+Run time: 6.8736255168914795
+Heuristic function average: 1.1984006965447713
+EBF: 1.346040817915906
+Minimum tree depth: 26
+Average tree depth: 28.096153846153847
+Maximum tree depth: 30
+Solution has less steps than the suggested solution
+---------------------------------------------------------------
+
+
+Board number 25
+---------------------------------------------------------------
+Solution: PD1 XL1 CL1 EU1 OU1 QR2 BD3 DR1 XR1 AR1 BD1 PU3 QL3 GU3 QR1 PD3 XL1 DL1 QR2 BU3 QL1 OD1 CR1 GU1 AL1 BU1 QL1 HL2 ED2 IL1 OD2 XR6
+Solution depth: 32
+Scanned nodes: 7544
+Penetrance: 0.0042417815482502655
+Run time: 13.840004682540894
+Heuristic function average: 2.5140753453096023
+EBF: 1.3218283204705674
+Minimum tree depth: 26
+Average tree depth: 29.233221476510067
+Maximum tree depth: 32
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 26
+---------------------------------------------------------------
+Solution: OL1 ED1 RL1 CD2 DU2 GU1 XR1 AD1 HR1 OL1 PU1 OL1 CD1 RR2 AD3 XL1 RL2 CU4 RR2 AU1 EU1 HL1 GD1 RR1 FU1 HL3 FD1 XR1 AU2 RL2 PD3 XR4
+Solution depth: 32
+Scanned nodes: 4180
+Penetrance: 0.007655502392344498
+Run time: 6.805807113647461
+Heuristic function average: 2.247146803582889
+EBF: 1.2976625127933328
+Minimum tree depth: 27
+Average tree depth: 29.684931506849313
+Maximum tree depth: 33
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 27
+---------------------------------------------------------------
+Solution: PU2 ER1 OD2 CR2 BR2 DU2 XR1 AD4 XL1 DD2 CL3 DU1 BL3 OU2 EL4 DD1 OD2 CR3 DU2 XR1 ER1 AU3 EL1 FU1 RL3 OD1 PD3 XR5
+Solution depth: 28
+Scanned nodes: 2230
+Penetrance: 0.012556053811659192
+Run time: 3.1914634704589844
+Heuristic function average: 2.427197802197802
+EBF: 1.3169895123541222
+Minimum tree depth: 24
+Average tree depth: 27.284552845528456
+Maximum tree depth: 30
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 28
+---------------------------------------------------------------
+Solution: QU1 GR2 FR2 DD1 AD1 OR3 PU1 CD1 EL2 AD1 BL1 QU1 EL1 RR1 PD2 BL2 AU1 BL1 PU2 ER3 PD1 OL3 AU1 DU1 FL1 GL1 CU1 FL1 PD2 XR3 PU2 RL1 QD2 XR3
+Solution depth: 34
+Scanned nodes: 1686
+Penetrance: 0.020166073546856466
+Run time: 2.3277781009674072
+Heuristic function average: 2.464757546682412
+EBF: 1.2442497885082546
+Minimum tree depth: 31
+Average tree depth: 34.05128205128205
+Maximum tree depth: 36
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 29
+---------------------------------------------------------------
+Solution: BU1 ER1 GU1 RR1 GU2 EL1 CD1 DL1 HU1 FR2 RR2 AD3 DR1 XR1 CU3 DL1 AU1 RL1 HD1 OR1 CU1 XL1 ER1 RL2 AU2 FL2 GD3 EL2 PD1 OR2 AU1 PD2 XR3 AD1 OL1 BU1 XR3
+Solution depth: 37
+Scanned nodes: 4285
+Penetrance: 0.008634772462077013
+Run time: 6.9494242668151855
+Heuristic function average: 3.082493702770781
+EBF: 1.253605339155567
+Minimum tree depth: 36
+Average tree depth: 37.44444444444444
+Maximum tree depth: 38
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 30
+---------------------------------------------------------------
+Solution: DR1 CR1 QU1 FR2 ER1 OD3 XL1 AD1 PL1 QU2 DR1 BD3 DL1 QD1 PR1 AU1 XR3 AD1 PL1 QU1 DR1 BU1 FL1 OU3 CL1 EL1 AD3 CR1 OD1 PL2 XL2 BU3 DL1 QD3 XR5
+Solution depth: 35
+Scanned nodes: 1081
+Penetrance: 0.032377428307123035
+Run time: 1.4660816192626953
+Heuristic function average: 1.3667871836429373
+EBF: 1.2209018002496206
+Minimum tree depth: 32
+Average tree depth: 34.39622641509434
+Maximum tree depth: 37
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 31
+---------------------------------------------------------------
+Solution: AR1 DU2 XL1 QU2 FR3 QD2 XR1 DD1 AL1 DD2 XL1 QU3 EL2 BD1 CL1 PU1 FR1 BD1 DD1 EL1 QD3 XR3 QU3 ER1 DU3 EL1 QD1 AR1 DU1 QD2 XL3 BU1 QU2 FL3 BD1 FL1 QD2 XR3 QU1 RL1 PD2 XR3
+Solution depth: 42
+Scanned nodes: 3748
+Penetrance: 0.011205976520811099
+Run time: 5.515257358551025
+Heuristic function average: 2.344048152654159
+EBF: 1.2164393661466206
+Minimum tree depth: 38
+Average tree depth: 41.84158415841584
+Maximum tree depth: 44
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 32
+---------------------------------------------------------------
+Solution: BD1 CL1 PU3 FR1 KU1 HR4 KD1 FL1 PD1 CR1 BU1 DD1 EL1 OD3 XR3 OU3 ER1 DU3 EL1 OD1 AR1 OD2 XL2 BD1 CL1 DU1 XL1 PU1 FR1 KU1 OU1 HL4 OD1 KD1 FL1 PD1 CR1 BU1 PD2 XR6
+Solution depth: 40
+Scanned nodes: 512
+Penetrance: 0.078125
+Run time: 0.5236022472381592
+Heuristic function average: 2.3246164574616457
+EBF: 1.1687772485612455
+Minimum tree depth: 37
+Average tree depth: 38.9375
+Maximum tree depth: 40
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 33
+---------------------------------------------------------------
+Solution: BL1 PU3 ER1 GU1 QR1 ID1 DL1 GU2 EL2 HU3 ER1 RD1 BL1 HU1 ER1 FR2 QR2 RD2 FR1 GD2 XR3 AD1 BL2 RU3 DR1 IU3 DL1 RD1 BR2 AU1 IU1 RD2 XL3 GU1 RU2 FL3 GD1 FL1 RD2 XR3 RU1 QL3 GD1 EL1 PD3 XR3
+Solution depth: 46
+Scanned nodes: 3134
+Penetrance: 0.014677728142948309
+Run time: 5.319780349731445
+Heuristic function average: 3.2830155919019344
+EBF: 1.19124791084837
+Minimum tree depth: 41
+Average tree depth: 45.330917874396135
+Maximum tree depth: 50
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 34
+---------------------------------------------------------------
+Solution: XR1 AD1 RL3 BU1 HR1 DD1 QR1 AD2 XL1 CU1 PU1 QR2 EU3 QL1 IR1 AD1 PD1 QL2 DU2 FL3 DD1 BD1 RR3 EU1 XR1 DD1 QR1 AU4 XL1 ED1 RL2 CU1 FL1 PU1 QR2 ED2 XR1 AD1 RL1 BU1 IL1 ED1 QL3 DU1 HL1 PD3 XR5
+Solution depth: 47
+Scanned nodes: 3971
+Penetrance: 0.011835809619743138
+Run time: 6.450757026672363
+Heuristic function average: 2.965170757580222
+EBF: 1.1928129295428451
+Minimum tree depth: 42
+Average tree depth: 44.991150442477874
+Maximum tree depth: 47
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 35
+---------------------------------------------------------------
+Solution: PD1 AR1 BU1 GR1 KD1 QL1 FU2 EU2 DR3 ED1 BD1 AL1 PU1 ED1 QR1 KU1 GL1 FU1 QR2 OD3 XR1 KU3 XL1 OU3 QL1 PD1 AR1 BU1 QL2 EU2 DL3 ED2 BD1 AL1 PU1 QR3 OD1 AL2 BU1 FU1 DL1 OD2 XR1 KD1 AL1 XR2 OU3 QL1 PD3 XR3
+Solution depth: 50
+Scanned nodes: 3773
+Penetrance: 0.013252054068380599
+Run time: 5.887263298034668
+Heuristic function average: 2.9521018408279147
+EBF: 1.179054108904734
+Minimum tree depth: 46
+Average tree depth: 48.73809523809524
+Maximum tree depth: 51
+Solution has less steps than the suggested solution
+---------------------------------------------------------------
+
+
+Board number 36
+---------------------------------------------------------------
+Solution: DD1 RR1 OD1 XR1 PL1 AL1 QU1 CR1 RR2 EU3 RL1 QD1 AR1 PR1 OU1 RL2 DU1 GR4 DD1 RR1 OD1 PL1 AL1 QU1 RR2 ED3 RL1 QD1 AR1 BD1 PR1 OU1 CL2 BD2 RL2 XL2 DU3 RR1 OD1 PL1 DU1 FL1 GL1 QD2 XR5
+Solution depth: 45
+Scanned nodes: 1821
+Penetrance: 0.02471169686985173
+Run time: 2.802509307861328
+Heuristic function average: 1.04611297362262
+EBF: 1.1815478986057109
+Minimum tree depth: 40
+Average tree depth: 43.11450381679389
+Maximum tree depth: 45
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 37
+---------------------------------------------------------------
+Solution: CL1 PU1 GR1 QD1 XL1 BD1 CL1 OU1 RR2 BD2 XR1 QU1 GL1 BD1 RL2 OD1 CR1 AR1 DR1 QU2 RL1 EU3 RR1 QD1 AL1 CL1 OU1 RR2 BU1 GR1 QD2 XL1 DL1 BU2 RL1 PD1 RL1 OD1 CR2 EU1 BU1 XR1 QU1 FL1 GL1 HL2 PD2 FL1 OD2 XR5
+Solution depth: 50
+Scanned nodes: 1830
+Penetrance: 0.0273224043715847
+Run time: 2.7107532024383545
+Heuristic function average: 2.8491526605760513
+EBF: 1.1621147723256187
+Minimum tree depth: 42
+Average tree depth: 48.063291139240505
+Maximum tree depth: 51
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 38
+---------------------------------------------------------------
+Solution: OL1 RU2 ER1 CD1 BR2 DU1 GR1 FU1 QL3 CD2 EL1 RD1 OR1 DU1 XR1 AD3 XL1 DD1 OL1 RU1 ER1 CU1 QR3 FD1 DD1 BL3 CU2 EL1 RD1 DU1 EL2 CD1 AD1 EL1 DD1 OR1 BR3 DU2 ER1 XR1 AU3 EL1 AU1 XL1 FU2 GL4 FD1 CD1 QL1 RD2 XR6
+Solution depth: 51
+Scanned nodes: 3084
+Penetrance: 0.016536964980544747
+Run time: 4.014270782470703
+Heuristic function average: 2.300239586398218
+EBF: 1.1706147910389535
+Minimum tree depth: 45
+Average tree depth: 49.790055248618785
+Maximum tree depth: 53
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 39
+---------------------------------------------------------------
+Solution: HR1 CD1 AD1 OL1 RU2 ER1 HR1 IR2 BD3 EL1 RD1 OR1 AU1 XR3 AD1 CD1 OL1 RU1 ER1 DR2 GU3 DL1 EL1 RD1 OR1 AU1 GU1 FU4 XL3 AD1 OL1 RU1 ER1 BU3 EL1 RD1 OR1 AU1 DL1 CU2 HL4 CD1 AD1 OL1 RU1 ER1 IL3 BD3 EL1 RD1 OR1 AU1 RD2 XR6
+Solution depth: 54
+Scanned nodes: 3526
+Penetrance: 0.015314804310833806
+Run time: 4.47404146194458
+Heuristic function average: 2.035571986034093
+EBF: 1.1632964776959303
+Minimum tree depth: 51
+Average tree depth: 54.270833333333336
+Maximum tree depth: 56
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Board number 40
+---------------------------------------------------------------
+Solution: PU1 IR1 ED1 QR3 FU1 HR1 OD1 AL1 DU1 OD2 CD2 XL3 BD1 DD1 AR3 DU1 XR1 OU1 HL1 FD1 QL1 PD1 AR1 XR1 CU3 XL1 OU2 QL2 EU4 XR1 QR2 CD3 XL1 ED1 AL1 PU1 QR1 FU1 HR1 OD3 XL1 DD1 AL1 BU1 AL2 DU1 EU1 IL1 XR1 GL1 OU1 HL1 FD1 QL1 PD3 XR5
+Solution depth: 56
+Scanned nodes: 1969
+Penetrance: 0.028440832910106652
+Run time: 2.8802993297576904
+Heuristic function average: 1.9828153319460293
+EBF: 1.1450535996510134
+Minimum tree depth: 50
+Average tree depth: 53.36119402985074
+Maximum tree depth: 56
+Solution has the same amount of steps as the suggested solution
+---------------------------------------------------------------
+
+
+Overall summary
+---------------------------------------------------------------
+Solution depth avg: 28.35
+Scanned nodes avg: 2179.075
+Penetrance avg: 0.023366027730721526
+Run time avg: 3.515028989315033
+Heuristic overall avg: 2.1421735751833966
+EBF avg: 1.4207350563039225
+Min tree depth avg: 23.55
+Max tree depth avg: 28.575
+Overall tree depth avg: 26.398626787135917
+---------------------------------------------------------------
