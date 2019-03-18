@@ -87,19 +87,24 @@ class Board:
         exit_row = self.grid[2]
         value = 0
         count = False
+        if heuristic == Heuristic.BLOCKING_CARS:
+            return self.get_blocking_cars_num()
         for col in exit_row:
             if col == "X":
                 count = True
             if count and col != "X" and col != ".":
+                if heuristic == Heuristic.BLOCKED_BLOCKING_CARS:
+                    # Add one for the original blocking car:
+                    value = value + 1
+                    value = value + self.cars_blocking_blocking_car_num(car)
                 if heuristic == Heuristic.BLOCKING_CARS_MOVE_DISTANCE or \
                         heuristic == Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE:
                     car = self.get_car_by_name(col)
                     if car is None:
                         assert 0
-                    value = value + car.steps_to_clear_path() - 1
+                    value = value + car.steps_to_clear_path()
                 if heuristic == Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE:
                     value = value + self.cars_blocking_blocking_car_num(car)
-                value = value + 1
         return value
 
     def cars_blocking_blocking_car_num(self, car):
