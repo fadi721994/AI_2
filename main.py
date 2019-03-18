@@ -8,7 +8,7 @@ import cProfile, pstats, io
 def main():
     time_limit, algorithm_num = parse_cmd()
     delete_existing_files()
-    heuristics = [Heuristic.BLOCKING_CARS, Heuristic.BLOCKED_BLOCKING_CARS]
+    heuristics = [Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE]
     list_of_boards = parse_list_of_boards()
     list_of_solutions = read_solutions()
     for j, heuristic in enumerate(heuristics):
@@ -25,12 +25,12 @@ def main():
     print("Finished")
 
 
-pr = cProfile.Profile()
-pr.enable()
+# pr = cProfile.Profile()
+# pr.enable()
 main()
-pr.disable()
-s = io.StringIO()
-sortby = 'cumulative'
-ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
-ps.print_stats()
-print(s.getvalue())
+# pr.disable()
+# s = io.StringIO()
+# sortby = 'cumulative'
+# ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+# ps.print_stats()
+# print(s.getvalue())

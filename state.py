@@ -13,7 +13,7 @@ class State:
 
     # Check if a state is a goal state.
     def goal_state(self):
-        blocking_cars = self.board.calculate_blocking_cars()
+        blocking_cars = self.board.get_blocking_cars_num()
         # Check if goal state
         if blocking_cars == 0:
             return True

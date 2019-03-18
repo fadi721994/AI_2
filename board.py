@@ -70,8 +70,8 @@ class Board:
     def get_car_by_name(self, car_name):
         return self.cars[car_name]
 
-    # Calculate the number of cars blocking X. If count_blocked is True, we add 1 for each blocking car that is blocked.
-    def calculate_blocking_cars(self, count_blocked=False):
+    # Get the number of cars blocking X
+    def get_blocking_cars_num(self):
         exit_row = self.grid[2]
         blocking_cars = 0
         count = False
@@ -79,39 +79,62 @@ class Board:
             if col == "X":
                 count = True
             if count and col != "X" and col != ".":
-                car = self.get_car_by_name(col)
-                if car is None:
-                    assert 0
-                if count_blocked:
-                    is_blocked = self.is_blocking_car_blocked(car)
-                    if is_blocked:
-                        blocking_cars = blocking_cars + 1
                 blocking_cars = blocking_cars + 1
         return blocking_cars
 
-    # Check if a car that is blocking X, is also blocked.
-    def is_blocking_car_blocked(self, car):
-        if car.size == 3:
-            for x, row in enumerate(self.grid[3:]):
-                if self.grid[x + 3][car.y] != "." and self.grid[x + 3][car.y] != car.name:
-                    return True
-        elif car.size == 2:
-            if (self.grid[0][car.y] != "." and self.grid[0][car.y] != car.name) or \
-                    (self.grid[1][car.y] != "." and self.grid[1][car.y] != car.name) or \
-                    (self.grid[3][car.y] != "." and self.grid[3][car.y] != car.name) or \
-                    (self.grid[4][car.y] != "." and self.grid[4][car.y] != car.name):
-                return True
-        return False
+    # Calculate the number of cars blocking X. If count_blocked is True, we add 1 for each blocking car that is blocked.
+    def calculate_heuristic_value(self, heuristic):
+        exit_row = self.grid[2]
+        value = 0
+        count = False
+        for col in exit_row:
+            if col == "X":
+                count = True
+            if count and col != "X" and col != ".":
+                if heuristic == Heuristic.BLOCKING_CARS_MOVE_DISTANCE or \
+                        heuristic == Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE:
+                    car = self.get_car_by_name(col)
+                    if car is None:
+                        assert 0
+                    value = value + car.steps_to_clear_path() - 1
+                if heuristic == Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE:
+                    value = value + self.cars_blocking_blocking_car_num(car)
+                value = value + 1
+        return value
+
+    def cars_blocking_blocking_car_num(self, car):
+        cars_blocking = 0
+        if car.size == 2 \
+                and ((car.x == 1 and self.grid[0][car.y] != '.') or (car.x == 2 and self.grid[4][car.y] != '.')):
+            cars_blocking = cars_blocking + 1
+        else:
+            if self.grid[5][car.y] != '.' and self.grid[5][car.y] != car.name:
+                cars_blocking = cars_blocking + 1
+            if self.grid[4][car.y] != '.' and self.grid[4][car.y] != car.name:
+                cars_blocking = cars_blocking + 1
+            if self.grid[3][car.y] != '.' and self.grid[3][car.y] != car.name:
+                cars_blocking = cars_blocking + 1
+        return cars_blocking
 
     # Calculate the heuristic function and return its value.
     # Parameter "calc_blocked_blocking", if true, we add 1 for each X-blocking car that is also blocked.
-    def calculate_h(self, calc_blocked_blocking):
-        blocking_cars_points = self.calculate_blocking_cars(calc_blocked_blocking)
-        return blocking_cars_points
+    def calculate_h(self, heuristic):
+        heuristic_value = self.calculate_heuristic_value(heuristic)
+        # self.pretty_print()
+        # print("Value is " + str(heuristic_value))
+        # print()
+        return heuristic_value
+
+    def pretty_print(self):
+        for line in self.grid:
+            row = ''
+            for entry in line:
+                row = row + entry + " "
+            print(row)
 
     # Calculate the f function.
     def calculate_f(self, steps, data):
-        h_value = self.calculate_h(data.heuristic == Heuristic.BLOCKED_BLOCKING_CARS)
+        h_value = self.calculate_h(data.heuristic)
         data.heuristic_values.append(h_value)
         return steps + h_value
 

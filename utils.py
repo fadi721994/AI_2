@@ -1,6 +1,7 @@
 from board import Board
 from a_star import AStar
 from ida_star import IDAStar
+from heuristic import Heuristic
 from bi_directional_a_star import BiDirAStar
 import argparse
 import os
@@ -95,9 +96,10 @@ def parse_cmd():
 
 
 def delete_existing_files():
-    h_files = ["h1", "h2"]
-    for h_file in h_files:
-        if os.path.isfile("./output_" + h_file + ".txt"):
-            os.remove("./output_" + h_file + ".txt")
-        if os.path.isfile("./detailed_output_" + h_file + ".txt"):
-            os.remove("./detailed_output_" + h_file + ".txt")
+    heuristics_num = len(Heuristic)
+    for num in range(heuristics_num):
+        file_num = num + 1
+        if os.path.isfile("./output_h" + str(file_num) + ".txt"):
+            os.remove("./output_h" + str(file_num) + ".txt")
+        if os.path.isfile("./detailed_output_h" + str(file_num) + ".txt"):
+            os.remove("./detailed_output_h" + str(file_num) + ".txt")

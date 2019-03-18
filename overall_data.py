@@ -30,11 +30,8 @@ class OverallData:
 
     # Add the overall heuristic run averages to the details output files.
     def print_avgs(self):
-        if self.heuristic == Heuristic.BLOCKING_CARS:
-            h_file = 'h1'
-        else:
-            h_file = 'h2'
-        with open("detailed_output_" + h_file + ".txt", 'a') as file:
+        h_file = self.heuristic.value + 1
+        with open("detailed_output_h" + str(h_file) + ".txt", 'a') as file:
             file.write("Overall summary\n")
             file.write("---------------------------------------------------------------\n")
             file.write("Solution depth avg: " + calc_avg(self.solution_depth) + "\n")

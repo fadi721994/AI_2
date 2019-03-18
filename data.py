@@ -51,14 +51,10 @@ class Data:
         if self.run_time > self.time_limit:
             self.solution = "FAILED"
 
-        if self.heuristic == Heuristic.BLOCKING_CARS:
-            h_file = 'h1'
-        else:
-            h_file = 'h2'
-
-        with open("output_" + h_file + ".txt", 'a') as file:
+        h_file = self.heuristic.value + 1
+        with open("output_h" + str(h_file) + ".txt", 'a') as file:
             file.write(self.solution + "\n")
-        with open("detailed_output_" + h_file + ".txt", 'a') as file:
+        with open("detailed_output_h" + str(h_file) + ".txt", 'a') as file:
             file.write("Board number " + str(self.board_num + 1) + "\n")
             file.write("---------------------------------------------------------------\n")
             file.write("Solution: " + self.solution + "\n")
@@ -85,10 +81,7 @@ class Data:
                 opt_str = 'Solution has the same amount of steps as the suggested solution'
             elif self.optimal == -1:
                 opt_str = 'Solution has more steps than the suggested solution'
-        if self.heuristic == Heuristic.BLOCKING_CARS:
-            h_file = 'h1'
-        else:
-            h_file = 'h2'
-        with open("detailed_output_" + h_file + ".txt", 'a') as file:
+        h_file = self.heuristic.value + 1
+        with open("detailed_output_h" + str(h_file) + ".txt", 'a') as file:
             file.write(opt_str + "\n")
             file.write("---------------------------------------------------------------\n\n\n")
