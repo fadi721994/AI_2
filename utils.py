@@ -89,8 +89,8 @@ def calc_avg(data_list):
 
 def parse_cmd():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-t', default=25, help='Time limit')
-    parser.add_argument('-a', default=2, help='Algorithm number')
+    parser.add_argument('-t', default=10, help='Time limit')
+    parser.add_argument('-a', default=3, help='Algorithm number')
     args = parser.parse_args()
     try:
         time_limit = int(args.t)

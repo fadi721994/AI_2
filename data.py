@@ -9,6 +9,7 @@ class Data:
     def __init__(self, board_num, heuristic, time_limit, indicators, given_solution, min_cost, use_difficulty=False):
         self.board_num = board_num
         self.min_cost_path = min_cost
+        self.min_cost_path_steps = utils.from_steps_str_to_object(self.min_cost_path)
         self.difficulty = self.get_difficulty()
         self.use_difficulty = use_difficulty
         if self.use_difficulty:
@@ -36,6 +37,8 @@ class Data:
         self.given_solution = given_solution
         self.bidirectional_direction = BidirectionalDirection.NONE
         self.goal_board = None
+        self.update_action_weights = False
+        self.actions = []
 
     def get_difficulty_depth_limit(self):
         if self.difficulty == Difficulty.BEGINNER:
@@ -133,3 +136,24 @@ class Data:
         with open("detailed_output_h" + str(h_file) + ".txt", 'a') as file:
             file.write(opt_str + "\n")
             file.write("---------------------------------------------------------------\n\n\n")
+
+    def reinforcement_learning(self, state):
+        step = state.step_taken
+        if step is None:
+            return
+        action = self.get_action(step)
+        if self.is_action_in_sol_path(action):
+            action.weight = action.weight - 1
+        else:
+            action.weight = action.weight + 1
+
+    def is_action_in_sol_path(self, action):
+        for step in self.min_cost_path_steps:
+            if step.direction == action.direction and step.car_name == action.car.name:
+                return True
+        return False
+
+    def get_action(self, step):
+        for action in self.actions:
+            if action.car.name == step.car_name and action.direction == step.direction:
+                return action

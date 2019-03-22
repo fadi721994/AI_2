@@ -27,6 +27,8 @@ class AStar:
             # Step 3: Select from OPEN a node i at which f is minimum. If several nodes qualify,
             # choose a goal node if there is one, otherwise choose among them arbitrarily.
             state = open_list.pop().state
+            if self.data.update_action_weights:
+                self.data.reinforcement_learning(state)
 
             # Step 4: Remove node i from OPEN and place it on a list called CLOSED, of expanded nodes.
             self.data.scanned_nodes = self.data.scanned_nodes + 1
