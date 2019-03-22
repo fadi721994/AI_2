@@ -55,12 +55,6 @@ class BiDirAStar:
         backward_steps = list(reversed(backward_state.get_solution_steps()))
         forward_solution_str = self.backward_begin_state.create_solution_string(forward_steps, False)
         backward_solution_str = self.backward_begin_state.create_solution_string(backward_steps, True, True)
-        print("Forward")
-        print(forward_solution_str)
-        print(len(forward_steps))
-        print("Backward")
-        print(backward_solution_str)
-        print(len(backward_steps))
 
         solution_str = forward_solution_str + ' ' + backward_solution_str
         self.finalize_data()
