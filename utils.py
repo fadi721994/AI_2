@@ -3,6 +3,7 @@ from a_star import AStar
 from ida_star import IDAStar
 from heuristic import Heuristic
 from bi_directional_a_star import BiDirAStar
+from reinforcement_learning import ReinforcementLearning
 from direction import Direction
 from step import Step
 import argparse
@@ -30,6 +31,8 @@ def get_algorithm(algorithm_num, board, data):
         return IDAStar(board, data)
     elif algorithm_num == 2:
         return BiDirAStar(board, data)
+    elif algorithm_num == 3:
+        return ReinforcementLearning(board, data)
     else:
         print("Algorithm cannot be: " + str(algorithm_num))
         exit(1)
@@ -68,6 +71,17 @@ def read_solutions():
     return solutions
 
 
+def read_min_cost_paths():
+    solutions = []
+    with open("minimum_cost_path.txt", 'r') as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            solutions.append(line)
+    return solutions
+
+
 # Calculate average of a list.
 def calc_avg(data_list):
     return str(sum(data_list)/len(data_list))
@@ -88,8 +102,9 @@ def parse_cmd():
         exit(1)
     try:
         algorithm = int(args.a)
-        if algorithm > 2:
-            print("Algorithm can be either 0 for A star, 1 for IDA star or 2 for bi-directional A star")
+        if algorithm > 3:
+            print("Algorithm can be either 0 for A star, 1 for IDA star, 2 for bi-directional A star or 3"
+                  " reinforcement learning")
             exit(1)
     except ValueError:
         print("Input entered for algorithm is not a number")

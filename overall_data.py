@@ -1,5 +1,4 @@
 from utils import calc_avg
-from heuristic import Heuristic
 
 
 class OverallData:

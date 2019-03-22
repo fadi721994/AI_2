@@ -1,6 +1,5 @@
 from a_star import AStar
 from state import State
-import math
 
 
 class IDAStar:

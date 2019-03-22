@@ -5,6 +5,7 @@ from heuristic import Heuristic
 from special_cell import SpecialCell
 from bidirectional_direction import BidirectionalDirection
 
+
 class Board:
     def __init__(self, board_line, special_cells, width=6, height=6):
         if len(board_line) % width != 0 or len(board_line) / width != height:
@@ -137,11 +138,16 @@ class Board:
             overall = overall + x_diff + y_diff
         return overall
 
+    def calculate_backward_heuristic_value(self, heuristic, goal_board):
+        forward_h_value = goal_board.calculate_heuristic_value(heuristic)
+        backward_h_value = self.calculate_heuristic_value(heuristic)
+        return forward_h_value - backward_h_value
+
     # Calculate the heuristic function and return its value.
     # Parameter "calc_blocked_blocking", if true, we add 1 for each X-blocking car that is also blocked.
     def calculate_h(self, heuristic, bidirectional_direction, goal_board):
-        if bidirectional_direction != BidirectionalDirection.NONE:
-            return self.calculate_bidirectional_heuristic_value(goal_board)
+        if bidirectional_direction == BidirectionalDirection.BACKWARD:
+            return self.calculate_backward_heuristic_value(heuristic, goal_board)
         heuristic_value = self.calculate_heuristic_value(heuristic)
         return heuristic_value
 

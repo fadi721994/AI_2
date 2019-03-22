@@ -1,6 +1,7 @@
 from direction import Direction
 from board import Board
 from indicator import Indicator
+from bidirectional_direction import BidirectionalDirection
 import utils
 
 
@@ -154,6 +155,13 @@ class State:
             return True
         return False
 
+    def is_state_in_list(self, closed_list):
+        grid_str = self.board.grid_to_str()
+        for entry in closed_list:
+            if entry.board.grid_to_str() == grid_str:
+                return True
+        return False
+
     # Remove state from the closed list.
     def remove_state(self, closed_list):
         hash_num = hash(self.board.grid_to_str())
@@ -161,7 +169,7 @@ class State:
             closed_list.remove(hash_num)
 
     def run_steps_on_board(self, data, reset_data=True, calculate_f_value=True):
-        steps_list = utils.from_steps_str_to_object(data.given_solution)
+        steps_list = utils.from_steps_str_to_object(data.min_cost_path)
         state = self
         for step in steps_list:
             state = state.create_expansion(step, data, calculate_f_value)

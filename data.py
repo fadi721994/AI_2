@@ -6,9 +6,17 @@ from difficulty import Difficulty
 
 
 class Data:
-    def __init__(self, board_num, heuristic, time_limit, indicators, given_solution):
+    def __init__(self, board_num, heuristic, time_limit, indicators, given_solution, min_cost, use_difficulty=False):
         self.board_num = board_num
+        self.min_cost_path = min_cost
         self.difficulty = self.get_difficulty()
+        self.use_difficulty = use_difficulty
+        if self.use_difficulty:
+            self.difficulty_depth_limit = self.get_difficulty_depth_limit()
+            self.difficulty_depth_min = self.get_difficulty_depth_min()
+        else:
+            self.difficulty_depth_limit = math.inf
+            self.difficulty_depth_min = -math.inf
         self.heuristic = heuristic
         self.indicators = indicators
         self.solution = ''
@@ -28,6 +36,26 @@ class Data:
         self.given_solution = given_solution
         self.bidirectional_direction = BidirectionalDirection.NONE
         self.goal_board = None
+
+    def get_difficulty_depth_limit(self):
+        if self.difficulty == Difficulty.BEGINNER:
+            return 20
+        elif self.difficulty == Difficulty.INTERMEDIATE:
+            return 30
+        elif self.difficulty == Difficulty.ADVANCED:
+            return 40
+        else:
+            return 60
+
+    def get_difficulty_depth_min(self):
+        if self.difficulty == Difficulty.BEGINNER:
+            return 6
+        elif self.difficulty == Difficulty.INTERMEDIATE:
+            return 9
+        elif self.difficulty == Difficulty.ADVANCED:
+            return 19
+        else:
+            return 35
 
     def get_difficulty(self):
         if self.board_num < 10:
@@ -61,9 +89,12 @@ class Data:
         self.solution_depth = sol_depth
         self.heuristic_avg = sum(self.heuristic_values) / len(self.heuristic_values)
         penetrance = self.get_penetrance()
-        ebf = self.get_ebf()
-        if open_list is not None:
+        if open_list is not None and solution != "FAILED":
+            ebf = self.get_ebf()
             self.find_tree_depth_data(open_list)
+        else:
+            ebf = 0
+            self.solution = "FAILED"
         if self.run_time > self.time_limit:
             self.solution = "FAILED"
 
