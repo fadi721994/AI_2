@@ -1,5 +1,7 @@
 from direction import Direction
 from board import Board
+from indicator import Indicator
+import utils
 
 
 class State:
@@ -31,8 +33,8 @@ class State:
         return list_of_expansions
 
     # Create expansion for a state, given a step.
-    def create_expansion(self, step, data):
-        board = Board(self.board.grid_to_str())
+    def create_expansion(self, step, data, calculate_f_value=True):
+        board = Board(self.board.grid_to_str(), self.board.special_cells)
         new_state = State(board, self, step, 0, self.steps + step.amount, self.depth + 1)
         car = new_state.board.get_car_by_name(step.car_name)
         if step.direction == Direction.RIGHT:
@@ -44,20 +46,61 @@ class State:
         elif step.direction == Direction.UP:
             car.x = car.x - step.amount
         new_state.board.build_grid()
-        new_state.f_value = new_state.board.calculate_f(new_state.steps, data)
+        if calculate_f_value:
+            new_state.f_value = new_state.calculate_f(data)
         return new_state
 
+    def evaluate_overall_free_cars(self):
+        cur_blocked_cars = self.board.num_of_blocked_cars()
+        prev_blocked_cars = self.prev_state.board.num_of_blocked_cars()
+        if prev_blocked_cars < cur_blocked_cars:
+            return 1
+        elif prev_blocked_cars > cur_blocked_cars:
+            return -1
+        return 0
+
+    def evaluate_board_freedom_degree(self):
+        if len(self.board.special_cells) == 0:
+            return 0
+        curr_special_cells = self.board.occupied_special_cells()
+        prev_special_cells = self.prev_state.board.occupied_special_cells()
+        if prev_special_cells < curr_special_cells:
+            return 1
+        elif prev_special_cells > curr_special_cells:
+            return -1
+        return 0
+
+    def evaluate_indicator(self, indicator):
+        if self.prev_state is None:
+            return 0
+        if indicator == Indicator.BOARD_FREEDOM_DEGREE:
+            return self.evaluate_board_freedom_degree()
+        elif indicator == Indicator.OVERALL_FREE_CARS:
+            return self.evaluate_overall_free_cars()
+        return 0
+
+    # Calculate the f function.
+    def calculate_f(self, data):
+        h_value = self.board.calculate_h(data.heuristic, data.bidirectional_direction, data.goal_board)
+        for indicator in data.indicators:
+            h_value = h_value + self.evaluate_indicator(indicator)
+        data.heuristic_values.append(h_value)
+        return self.steps + h_value
+
     # Give a state, find the path to the beginning state.
-    def get_solution_steps(self):
+    def get_solution_steps(self, reverse=False):
         steps = [self.step_taken]
         state = self
         while state.prev_state is not None:
-            steps.append(state.prev_state.step_taken)
+            if state.prev_state.step_taken is not None:
+                steps.append(state.prev_state.step_taken)
             state = state.prev_state
+        if reverse:
+            steps.reverse()
         return steps
 
     # Given steps list, create the string that should be printed to the output file.
-    def create_solution_string(self, steps):
+    def create_solution_string(self, steps, add_x=True, flip_dirs=False):
         steps = list(reversed(steps))
         solution_str = ''
         for step in steps:
@@ -67,16 +110,29 @@ class State:
                 amount = step.amount
                 direction_letter = ''
                 if direction == Direction.DOWN:
-                    direction_letter = 'D'
+                    if flip_dirs:
+                        direction_letter = 'U'
+                    else:
+                        direction_letter = 'D'
                 elif direction == Direction.UP:
-                    direction_letter = 'U'
+                    if flip_dirs:
+                        direction_letter = 'D'
+                    else:
+                        direction_letter = 'U'
                 elif direction == Direction.LEFT:
-                    direction_letter = 'L'
+                    if flip_dirs:
+                        direction_letter = 'R'
+                    else:
+                        direction_letter = 'L'
                 elif direction == Direction.RIGHT:
-                    direction_letter = 'R'
+                    if flip_dirs:
+                        direction_letter = 'L'
+                    else:
+                        direction_letter = 'R'
                 solution_str = solution_str + name + direction_letter + str(amount) + ' '
-        exit_dist = self.calculate_exit_distance()
-        solution_str = solution_str + 'XR' + str(exit_dist + 2)
+        if add_x:
+            exit_dist = self.calculate_exit_distance()
+            solution_str = solution_str + 'XR' + str(exit_dist + 2)
         return solution_str.strip()
 
     # Return the distance of the red car from the exit.
@@ -103,3 +159,16 @@ class State:
         hash_num = hash(self.board.grid_to_str())
         if hash_num in closed_list:
             closed_list.remove(hash_num)
+
+    def run_steps_on_board(self, data, reset_data=True, calculate_f_value=True):
+        steps_list = utils.from_steps_str_to_object(data.given_solution)
+        state = self
+        for step in steps_list:
+            state = state.create_expansion(step, data, calculate_f_value)
+        if reset_data:
+            state.f_value = 0
+            state.prev_state = None
+            state.steps = 0
+            state.step_taken = None
+            state.depth = 0
+        return state

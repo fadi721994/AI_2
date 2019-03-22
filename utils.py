@@ -3,6 +3,8 @@ from a_star import AStar
 from ida_star import IDAStar
 from heuristic import Heuristic
 from bi_directional_a_star import BiDirAStar
+from direction import Direction
+from step import Step
 import argparse
 import os
 
@@ -15,7 +17,7 @@ def parse_list_of_boards(file="./problems.txt"):
             line = line.strip()
             if not line:
                 continue
-            board = Board(line)
+            board = Board(line, None)
             list_of_boards.append(board)
     return list_of_boards
 
@@ -74,7 +76,7 @@ def calc_avg(data_list):
 def parse_cmd():
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', default=25, help='Time limit')
-    parser.add_argument('-a', default=0, help='Algorithm number')
+    parser.add_argument('-a', default=2, help='Algorithm number')
     args = parser.parse_args()
     try:
         time_limit = int(args.t)
@@ -103,3 +105,20 @@ def delete_existing_files():
             os.remove("./output_h" + str(file_num) + ".txt")
         if os.path.isfile("./detailed_output_h" + str(file_num) + ".txt"):
             os.remove("./detailed_output_h" + str(file_num) + ".txt")
+
+
+def from_steps_str_to_object(steps):
+    steps_strs = steps.split(' ')[:-1]
+    steps_objs = []
+    for step in steps_strs:
+        if step[1] == 'R':
+            direction = Direction.RIGHT
+        elif step[1] == 'L':
+            direction = Direction.LEFT
+        elif step[1] == 'D':
+            direction = Direction.DOWN
+        else:
+            direction = Direction.UP
+        step_obj = Step(step[0], direction, int(step[2]))
+        steps_objs.append(step_obj)
+    return steps_objs

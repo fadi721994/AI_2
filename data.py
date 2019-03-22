@@ -1,13 +1,16 @@
 import math
 import time
-from heuristic import Heuristic
-from utils import validate_solution
+import utils
+from bidirectional_direction import BidirectionalDirection
+from difficulty import Difficulty
 
 
 class Data:
-    def __init__(self, board_num, heuristic, time_limit):
+    def __init__(self, board_num, heuristic, time_limit, indicators, given_solution):
         self.board_num = board_num
+        self.difficulty = self.get_difficulty()
         self.heuristic = heuristic
+        self.indicators = indicators
         self.solution = ''
         self.scanned_nodes = 0
         self.solution_depth = 0
@@ -22,6 +25,18 @@ class Data:
         self.heuristic_avg = 0
         self.time_limit = time_limit
         self.optimal = 0
+        self.given_solution = given_solution
+        self.bidirectional_direction = BidirectionalDirection.NONE
+        self.goal_board = None
+
+    def get_difficulty(self):
+        if self.board_num < 10:
+            return Difficulty.BEGINNER
+        elif self.board_num < 20:
+            return Difficulty.INTERMEDIATE
+        elif self.board_num < 30:
+            return Difficulty.ADVANCED
+        return Difficulty.EXPERT
 
     # Given the open list, find the tree depths data, minimum, maximum and average.
     def find_tree_depth_data(self, open_list):
@@ -39,7 +54,7 @@ class Data:
         return self.scanned_nodes ** (1 / self.solution_depth)
 
     # Finalize the data and write to the output files.
-    def finalize(self, solution, sol_depth, open_list):
+    def finalize(self, solution, sol_depth, open_list=None):
         self.end_time = time.time()
         self.run_time = self.end_time - self.start_time
         self.solution = solution
@@ -47,7 +62,8 @@ class Data:
         self.heuristic_avg = sum(self.heuristic_values) / len(self.heuristic_values)
         penetrance = self.get_penetrance()
         ebf = self.get_ebf()
-        self.find_tree_depth_data(open_list)
+        if open_list is not None:
+            self.find_tree_depth_data(open_list)
         if self.run_time > self.time_limit:
             self.solution = "FAILED"
 
@@ -64,9 +80,10 @@ class Data:
             file.write("Run time: " + str(self.run_time) + "\n")
             file.write("Heuristic function average: " + str(self.heuristic_avg) + "\n")
             file.write("EBF: " + str(ebf) + "\n")
-            file.write("Minimum tree depth: " + str(self.min_depth + 1) + "\n")
-            file.write("Average tree depth: " + str(self.avg_depth + 1) + "\n")
-            file.write("Maximum tree depth: " + str(self.max_depth + 1) + "\n")
+            if open_list is not None:
+                file.write("Minimum tree depth: " + str(self.min_depth + 1) + "\n")
+                file.write("Average tree depth: " + str(self.avg_depth + 1) + "\n")
+                file.write("Maximum tree depth: " + str(self.max_depth + 1) + "\n")
 
     # Append to the data detailed output file whether the solution is optimal or not.
     def add_optimality(self, solution, suggested_solution):
@@ -74,7 +91,7 @@ class Data:
         if solution is None:
             opt_str = 'Failed to find solution'
         else:
-            self.optimal = validate_solution(suggested_solution, solution)
+            self.optimal = utils.validate_solution(suggested_solution, solution)
             if self.optimal == 1:
                 opt_str = 'Solution has less steps than the suggested solution'
             elif self.optimal == 0:

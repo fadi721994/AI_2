@@ -2,17 +2,24 @@ from orientation import Orientation
 from direction import Direction
 from car import Car
 from heuristic import Heuristic
-
+from special_cell import SpecialCell
+from bidirectional_direction import BidirectionalDirection
 
 class Board:
-    def __init__(self, board_line, width=6, height=6):
+    def __init__(self, board_line, special_cells, width=6, height=6):
         if len(board_line) % width != 0 or len(board_line) / width != height:
             raise Exception("Board input " + board_line + " cannot be split into 6 rows")
         board_line = [board_line[i:i + width] for i in range(0, len(board_line), width)]
+        self.width = width
+        self.height = height
         self.grid = board_line
         self.cars = dict()
         self.create_cars()
-        self.build_grid(width, height)
+        self.build_grid()
+        if special_cells is None:
+            self.initialize_special_cells()
+        else:
+            self.special_cells = special_cells
 
     # Read the grid lines and create car objects and add them to list.
     def create_cars(self):
@@ -55,7 +62,7 @@ class Board:
         return False
 
     # Build the grid using where the cars are placed.
-    def build_grid(self, width=6, height=6):
+    def build_grid(self):
         self.grid = [[".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."],
                      [".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", "."]]
         for car_name, car in self.cars.items():
@@ -121,13 +128,21 @@ class Board:
                 cars_blocking = cars_blocking + 1
         return cars_blocking
 
+    def calculate_bidirectional_heuristic_value(self, goal_board):
+        overall = 0
+        for car_name, car in self.cars.items():
+            goal_car = goal_board.get_car_by_name(car_name)
+            x_diff = abs(goal_car.x - car.x)
+            y_diff = abs(goal_car.y - car.y)
+            overall = overall + x_diff + y_diff
+        return overall
+
     # Calculate the heuristic function and return its value.
     # Parameter "calc_blocked_blocking", if true, we add 1 for each X-blocking car that is also blocked.
-    def calculate_h(self, heuristic):
+    def calculate_h(self, heuristic, bidirectional_direction, goal_board):
+        if bidirectional_direction != BidirectionalDirection.NONE:
+            return self.calculate_bidirectional_heuristic_value(goal_board)
         heuristic_value = self.calculate_heuristic_value(heuristic)
-        # self.pretty_print()
-        # print("Value is " + str(heuristic_value))
-        # print()
         return heuristic_value
 
     def pretty_print(self):
@@ -137,11 +152,12 @@ class Board:
                 row = row + entry + " "
             print(row)
 
-    # Calculate the f function.
-    def calculate_f(self, steps, data):
-        h_value = self.calculate_h(data.heuristic)
-        data.heuristic_values.append(h_value)
-        return steps + h_value
+    def num_of_blocked_cars(self):
+        blocked_cars = 0
+        for car_name, car in self.cars.items():
+            if self.can_car_move(car):
+                blocked_cars = blocked_cars + 1
+        return blocked_cars
 
     # Check if a car can move.
     def can_car_move(self, car):
@@ -168,6 +184,35 @@ class Board:
                 if self.grid[x - 1][y] != "." and self.grid[x + car.size][y] != ".":
                     return False
         return True
+
+    def can_one_car_only_reach(self, x, y):
+        reaching_cars = 0
+        name = ''
+        for car_name, car in self.cars.items():
+            if (car.x == x and car.orientation == Orientation.HORIZONTAL) or \
+                    (car.y == y and car.orientation == Orientation.VERTICAL):
+                name = car.name
+                reaching_cars = reaching_cars + 1
+        if reaching_cars == 1 and name == 'X':
+            return False, None
+        if reaching_cars == 1:
+            return True, name
+        return False, None
+
+    def initialize_special_cells(self):
+        self.special_cells = []
+        for y in range(6):
+            for x in range(6):
+                is_special, car_name = self.can_one_car_only_reach(x, y)
+                if is_special:
+                    self.special_cells.append(SpecialCell(x, y, car_name))
+
+    def occupied_special_cells(self):
+        occupied = 0
+        for cell in self.special_cells:
+            if self.grid[cell.x][cell.y] not in ['.', 'X']:
+                occupied = occupied + 1
+        return occupied
 
     # Given a car object, return a list of all the possible steps it can take. A step is an object.
     def find_car_valid_steps(self, car):

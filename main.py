@@ -1,6 +1,7 @@
 from utils import *
 from data import Data
 from heuristic import Heuristic
+from indicator import Indicator
 from overall_data import OverallData
 import cProfile, pstats, io
 
@@ -8,7 +9,8 @@ import cProfile, pstats, io
 def main():
     time_limit, algorithm_num = parse_cmd()
     delete_existing_files()
-    heuristics = [Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE]
+    heuristics = [Heuristic.BLOCKING_CARS]
+    indicators = []
     list_of_boards = parse_list_of_boards()
     list_of_solutions = read_solutions()
     for j, heuristic in enumerate(heuristics):
@@ -16,11 +18,12 @@ def main():
         print("Running with heuristic function " + str(j + 1))
         for i, board in enumerate(list_of_boards):
             print("Solving board number " + str(i + 1))
-            data = Data(i, heuristic, time_limit)
+            data = Data(i, heuristic, time_limit, indicators, list_of_solutions[i])
             algorithm = get_algorithm(algorithm_num, board, data)
             solution = algorithm.solve_board()
             data.add_optimality(solution, list_of_solutions[i])
-            heuristic_data.add_data(data)
+            if solution is not None:
+                heuristic_data.add_data(data)
         heuristic_data.print_avgs()
     print("Finished")
 
