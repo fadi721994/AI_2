@@ -90,7 +90,7 @@ def calc_avg(data_list):
 def parse_cmd():
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', default=10, help='Time limit')
-    parser.add_argument('-a', default=3, help='Algorithm number')
+    parser.add_argument('-a', default=2, help='Algorithm number')
     args = parser.parse_args()
     try:
         time_limit = int(args.t)
@@ -120,6 +120,8 @@ def delete_existing_files():
             os.remove("./output_h" + str(file_num) + ".txt")
         if os.path.isfile("./detailed_output_h" + str(file_num) + ".txt"):
             os.remove("./detailed_output_h" + str(file_num) + ".txt")
+        if os.path.isfile("./reinforcement_learning_h" + str(file_num) + ".txt"):
+            os.remove("./reinforcement_learning_h" + str(file_num) + ".txt")
 
 
 def from_steps_str_to_object(steps):

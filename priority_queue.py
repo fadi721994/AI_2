@@ -10,11 +10,10 @@ class PriorityQueue:
 
     def push(self, state, bidirectional_direction=BidirectionalDirection.NONE, goal_board=None):
         priority = state.f_value
-        if bidirectional_direction == BidirectionalDirection.BACKWARD or \
-                bidirectional_direction == BidirectionalDirection.FORWARD:
+        if bidirectional_direction == BidirectionalDirection.BACKWARD:
             if state.board.calculate_bidirectional_heuristic_value(goal_board) == 0:
                 priority = -math.inf
-        elif state.goal_state() and bidirectional_direction is BidirectionalDirection.NONE:
+        elif state.goal_state():
             priority = -math.inf
         heapq.heappush(self.queue, PriorityQueueNode(priority, state))
 
