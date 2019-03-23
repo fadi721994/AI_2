@@ -91,6 +91,7 @@ def parse_cmd():
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', default=10, help='Time limit')
     parser.add_argument('-a', default=2, help='Algorithm number')
+    parser.add_argument('-i', default=0, help='Indicator number')
     args = parser.parse_args()
     try:
         time_limit = int(args.t)
@@ -104,6 +105,16 @@ def parse_cmd():
         algorithm = int(args.a)
         if algorithm > 3:
             print("Algorithm can be either 0 for A star, 1 for IDA star, 2 for bi-directional A star or 3"
+                  " reinforcement learning")
+            exit(1)
+    except ValueError:
+        print("Input entered for algorithm is not a number")
+        exit(1)
+    try:
+        indicator = int(args.i)
+        if algorithm > 3:
+            print("Indicator can be either 0 for 'No indicator', 1 for 'Board freedom degree', "
+                  "2 for 'Overall free cars' or 3 for both 1 and 2."
                   " reinforcement learning")
             exit(1)
     except ValueError:

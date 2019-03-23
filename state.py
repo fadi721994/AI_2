@@ -84,7 +84,10 @@ class State:
     def calculate_f(self, data):
         h_value = self.board.calculate_h(data.heuristic, data.bidirectional_direction, data.goal_board)
         for indicator in data.indicators:
-            h_value = h_value + self.evaluate_indicator(indicator)
+            indicator_val = self.evaluate_indicator(indicator)
+            if data.bidirectional_direction == BidirectionalDirection.BACKWARD:
+                indicator_val = indicator_val * -1
+            h_value = h_value + indicator_val
         data.heuristic_values.append(h_value)
         return self.steps + h_value
 
