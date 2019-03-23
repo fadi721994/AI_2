@@ -5,6 +5,7 @@ from heuristic import Heuristic
 from bi_directional_a_star import BiDirAStar
 from reinforcement_learning import ReinforcementLearning
 from direction import Direction
+from indicator import Indicator
 from step import Step
 import argparse
 import os
@@ -89,12 +90,13 @@ def calc_avg(data_list):
 
 def parse_cmd():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-t', default=10, help='Time limit')
-    parser.add_argument('-a', default=2, help='Algorithm number')
-    parser.add_argument('-i', default=0, help='Indicator number')
+    parser.add_argument('-T', default=10, help='Time limit')
+    parser.add_argument('-A', default=0, help='Algorithm number')
+    parser.add_argument('-I', default=0, help='Indicator number')
+    parser.add_argument('-H', default=0, help='Heuristic number')
     args = parser.parse_args()
     try:
-        time_limit = int(args.t)
+        time_limit = int(args.T)
         if time_limit < 0:
             print("Input entered for time cannot be negative")
             exit(1)
@@ -102,7 +104,7 @@ def parse_cmd():
         print("Input entered for time limit is not a number.")
         exit(1)
     try:
-        algorithm = int(args.a)
+        algorithm = int(args.A)
         if algorithm > 3:
             print("Algorithm can be either 0 for A star, 1 for IDA star, 2 for bi-directional A star or 3"
                   " reinforcement learning")
@@ -111,8 +113,8 @@ def parse_cmd():
         print("Input entered for algorithm is not a number")
         exit(1)
     try:
-        indicator = int(args.i)
-        if algorithm > 3:
+        indicator = int(args.I)
+        if indicator > 3:
             print("Indicator can be either 0 for 'No indicator', 1 for 'Board freedom degree', "
                   "2 for 'Overall free cars' or 3 for both 1 and 2."
                   " reinforcement learning")
@@ -120,19 +122,26 @@ def parse_cmd():
     except ValueError:
         print("Input entered for algorithm is not a number")
         exit(1)
-    return time_limit, algorithm
+    try:
+        heuristic_num = int(args.H)
+        if heuristic_num > 3:
+            print("Heuristic can be either 0 for 'Blocking cars', 1 for 'Blocked blocking cars', 2 for 'Blocking cars"
+                  " and their move distance' or 3 for 'Blocked blocking cars and their move distance'.")
+            exit(1)
+    except ValueError:
+        print("Input entered for algorithm is not a number")
+        exit(1)
+    return time_limit, algorithm, indicator, heuristic_num
 
 
-def delete_existing_files():
-    heuristics_num = len(Heuristic)
-    for num in range(heuristics_num):
-        file_num = num + 1
-        if os.path.isfile("./output_h" + str(file_num) + ".txt"):
-            os.remove("./output_h" + str(file_num) + ".txt")
-        if os.path.isfile("./detailed_output_h" + str(file_num) + ".txt"):
-            os.remove("./detailed_output_h" + str(file_num) + ".txt")
-        if os.path.isfile("./reinforcement_learning_h" + str(file_num) + ".txt"):
-            os.remove("./reinforcement_learning_h" + str(file_num) + ".txt")
+def delete_existing_files(heuristic):
+    file_num = heuristic.value + 1
+    if os.path.isfile("./output_h" + str(file_num) + ".txt"):
+        os.remove("./output_h" + str(file_num) + ".txt")
+    if os.path.isfile("./detailed_output_h" + str(file_num) + ".txt"):
+        os.remove("./detailed_output_h" + str(file_num) + ".txt")
+    if os.path.isfile("./reinforcement_learning_h" + str(file_num) + ".txt"):
+        os.remove("./reinforcement_learning_h" + str(file_num) + ".txt")
 
 
 def from_steps_str_to_object(steps):
@@ -150,3 +159,27 @@ def from_steps_str_to_object(steps):
         step_obj = Step(step[0], direction, int(step[2]))
         steps_objs.append(step_obj)
     return steps_objs
+
+
+def get_indicators_list(indicator_num):
+    if indicator_num == 0:
+        return []
+    elif indicator_num == 1:
+        return [Indicator.BOARD_FREEDOM_DEGREE]
+    elif indicator_num == 2:
+        return [Indicator.OVERALL_FREE_CARS]
+    elif indicator_num == 3:
+        return [Indicator.BOARD_FREEDOM_DEGREE, Indicator.OVERALL_FREE_CARS]
+    return []
+
+
+def get_heuristic_list(heuristic_num):
+    if heuristic_num == 0:
+        return [Heuristic.BLOCKING_CARS]
+    elif heuristic_num == 1:
+        return [Heuristic.BLOCKED_BLOCKING_CARS]
+    elif heuristic_num == 2:
+        return [Heuristic.BLOCKING_CARS_MOVE_DISTANCE]
+    elif heuristic_num == 3:
+        return [Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE]
+    return [Heuristic.BLOCKING_CARS]

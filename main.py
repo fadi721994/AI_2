@@ -7,15 +7,15 @@ import cProfile, pstats, io
 
 
 def main():
-    time_limit, algorithm_num = parse_cmd()
-    delete_existing_files()
-    heuristics = [Heuristic.BLOCKING_CARS]
-    indicators = []
+    time_limit, algorithm_num, indicator_num, heuristic_num = parse_cmd()
+    heuristics = get_heuristic_list(heuristic_num)
+    indicators = get_indicators_list(indicator_num)
     use_difficulty = True
     list_of_boards = parse_list_of_boards()
     list_of_solutions = read_solutions()
     minimum_cost_paths = read_min_cost_paths()
     for j, heuristic in enumerate(heuristics):
+        delete_existing_files(heuristic)
         heuristic_data = OverallData()
         print("Running with heuristic function " + str(j + 1))
         for i, board in enumerate(list_of_boards):
