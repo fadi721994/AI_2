@@ -145,9 +145,6 @@ class Board:
         if bidirectional_direction == BidirectionalDirection.BACKWARD:
             return self.calculate_backward_heuristic_value(heuristic, goal_board)
         heuristic_value = self.calculate_heuristic_value(heuristic)
-        self.pretty_print()
-        print(heuristic_value)
-        print()
         return heuristic_value
 
     def pretty_print(self):
