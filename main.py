@@ -7,10 +7,10 @@ import cProfile, pstats, io
 
 
 def main():
-    time_limit, algorithm_num, indicator_num, heuristic_num = parse_cmd()
+    time_limit, algorithm_num, indicator_num, heuristic_num, difficulty = parse_cmd()
     heuristics = get_heuristic_list(heuristic_num)
     indicators = get_indicators_list(indicator_num)
-    use_difficulty = True
+    use_difficulty = difficulty == 1
     list_of_boards = parse_list_of_boards()
     list_of_solutions = read_solutions()
     minimum_cost_paths = read_min_cost_paths()

@@ -94,6 +94,7 @@ def parse_cmd():
     parser.add_argument('-A', default=0, help='Algorithm number')
     parser.add_argument('-I', default=0, help='Indicator number')
     parser.add_argument('-H', default=0, help='Heuristic number')
+    parser.add_argument('-D', default=0, help='Use difficulty as input')
     args = parser.parse_args()
     try:
         time_limit = int(args.T)
@@ -120,7 +121,7 @@ def parse_cmd():
                   " reinforcement learning")
             exit(1)
     except ValueError:
-        print("Input entered for algorithm is not a number")
+        print("Input entered for indicator is not a number")
         exit(1)
     try:
         heuristic_num = int(args.H)
@@ -129,9 +130,17 @@ def parse_cmd():
                   " and their move distance' or 3 for 'Blocked blocking cars and their move distance'.")
             exit(1)
     except ValueError:
-        print("Input entered for algorithm is not a number")
+        print("Input entered for heuristic is not a number")
         exit(1)
-    return time_limit, algorithm, indicator, heuristic_num
+    try:
+        difficulty = int(args.D)
+        if difficulty > 1:
+            print("'Use difficulty' can be either 0 for False or 1 for True.")
+            exit(1)
+    except ValueError:
+        print("Input entered for difficulty is not a number")
+        exit(1)
+    return time_limit, algorithm, indicator, heuristic_num, difficulty
 
 
 def delete_existing_files(heuristic):
