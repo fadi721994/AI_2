@@ -95,23 +95,19 @@ class Board:
         exit_row = self.grid[2]
         value = 0
         count = False
-        if heuristic == Heuristic.BLOCKING_CARS:
-            return self.get_blocking_cars_num()
         for col in exit_row:
             if col == "X":
                 count = True
             if count and col != "X" and col != ".":
-                if heuristic == Heuristic.BLOCKED_BLOCKING_CARS:
-                    # Add one for the original blocking car:
+                if heuristic == Heuristic.X_BLOCKING_CARS or heuristic == Heuristic.X_BLOCKING_CARS_BLOCKING_CARS:
                     value = value + 1
-                    value = value + self.cars_blocking_blocking_car_num(car)
-                if heuristic == Heuristic.BLOCKING_CARS_MOVE_DISTANCE or \
-                        heuristic == Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE:
+                if heuristic == Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE or \
+                        heuristic == Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE_BLOCKING_CARS:
                     car = self.get_car_by_name(col)
-                    if car is None:
-                        assert 0
                     value = value + car.steps_to_clear_path()
-                if heuristic == Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE:
+                if heuristic == Heuristic.X_BLOCKING_CARS_BLOCKING_CARS or \
+                        heuristic == Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE_BLOCKING_CARS:
+                    car = self.get_car_by_name(col)
                     value = value + self.cars_blocking_blocking_car_num(car)
         return value
 
@@ -149,6 +145,9 @@ class Board:
         if bidirectional_direction == BidirectionalDirection.BACKWARD:
             return self.calculate_backward_heuristic_value(heuristic, goal_board)
         heuristic_value = self.calculate_heuristic_value(heuristic)
+        self.pretty_print()
+        print(heuristic_value)
+        print()
         return heuristic_value
 
     def pretty_print(self):

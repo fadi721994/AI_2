@@ -126,8 +126,9 @@ def parse_cmd():
     try:
         heuristic_num = int(args.H)
         if heuristic_num > 3:
-            print("Heuristic can be either 0 for 'Blocking cars', 1 for 'Blocked blocking cars', 2 for 'Blocking cars"
-                  " and their move distance' or 3 for 'Blocked blocking cars and their move distance'.")
+            print("Heuristic can be either 0 for 'Blocking cars', 1 for 'Theoretical final position distance', 2 for"
+                  " 'Blocking cars and the cars in the way to their final position' or 3 for 'Theoretical final "
+                  "position distance and the cars in the way'.")
             exit(1)
     except ValueError:
         print("Input entered for heuristic is not a number")
@@ -184,11 +185,11 @@ def get_indicators_list(indicator_num):
 
 def get_heuristic_list(heuristic_num):
     if heuristic_num == 0:
-        return [Heuristic.BLOCKING_CARS]
+        return [Heuristic.X_BLOCKING_CARS]
     elif heuristic_num == 1:
-        return [Heuristic.BLOCKED_BLOCKING_CARS]
+        return [Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE]
     elif heuristic_num == 2:
-        return [Heuristic.BLOCKING_CARS_MOVE_DISTANCE]
+        return [Heuristic.X_BLOCKING_CARS_BLOCKING_CARS]
     elif heuristic_num == 3:
-        return [Heuristic.BLOCKED_BLOCKING_CARS_MOVE_DISTANCE]
+        return [Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE_BLOCKING_CARS]
     return [Heuristic.BLOCKING_CARS]

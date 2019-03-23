@@ -19,6 +19,8 @@ def main():
         heuristic_data = OverallData()
         print("Running with heuristic function " + str(j + 1))
         for i, board in enumerate(list_of_boards):
+            if i != 0:
+                continue
             print("Solving board number " + str(i + 1))
             data = Data(i, heuristic, time_limit, indicators, list_of_solutions[i], minimum_cost_paths[i],
                         use_difficulty)
