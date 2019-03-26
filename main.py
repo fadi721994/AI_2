@@ -8,7 +8,7 @@ import cProfile, pstats, io
 
 def main():
     time_limit, algorithm_num, indicator_num, heuristic_num, difficulty = parse_cmd()
-    heuristics = [Heuristic.X_BLOCKING_CARS, Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE, Heuristic.X_BLOCKING_CARS_BLOCKING_CARS, Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE_BLOCKING_CARS]#get_heuristic_list(heuristic_num)
+    heuristics = get_heuristic_list(heuristic_num)
     indicators = get_indicators_list(indicator_num)
     use_difficulty = difficulty == 1
     list_of_boards = parse_list_of_boards()
