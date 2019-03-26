@@ -29,7 +29,7 @@ class OverallData:
 
     # Add the overall heuristic run averages to the details output files.
     def print_avgs(self):
-        h_file = self.heuristic.value + 1
+        h_file = self.heuristic.value
         with open("detailed_output_h" + str(h_file) + ".txt", 'a') as file:
             file.write("Overall summary\n")
             file.write("---------------------------------------------------------------\n")

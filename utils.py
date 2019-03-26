@@ -145,7 +145,7 @@ def parse_cmd():
 
 
 def delete_existing_files(heuristic):
-    file_num = heuristic.value + 1
+    file_num = heuristic.value
     if os.path.isfile("./output_h" + str(file_num) + ".txt"):
         os.remove("./output_h" + str(file_num) + ".txt")
     if os.path.isfile("./detailed_output_h" + str(file_num) + ".txt"):

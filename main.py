@@ -17,7 +17,7 @@ def main():
     for j, heuristic in enumerate(heuristics):
         delete_existing_files(heuristic)
         heuristic_data = OverallData()
-        print("Running with heuristic function " + str(j + 1))
+        print("Running with heuristic function " + str(j))
         for i, board in enumerate(list_of_boards):
             print("Solving board number " + str(i + 1))
             data = Data(i, heuristic, time_limit, indicators, list_of_solutions[i], minimum_cost_paths[i],

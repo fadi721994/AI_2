@@ -101,7 +101,7 @@ class Data:
         if self.run_time > self.time_limit:
             self.solution = "FAILED"
 
-        h_file = self.heuristic.value + 1
+        h_file = self.heuristic.value
         with open("output_h" + str(h_file) + ".txt", 'a') as file:
             file.write(self.solution + "\n")
         with open("detailed_output_h" + str(h_file) + ".txt", 'a') as file:
@@ -132,7 +132,7 @@ class Data:
                 opt_str = 'Solution has the same amount of steps as the suggested solution'
             elif self.optimal == -1:
                 opt_str = 'Solution has more steps than the suggested solution'
-        h_file = self.heuristic.value + 1
+        h_file = self.heuristic.value
         with open("detailed_output_h" + str(h_file) + ".txt", 'a') as file:
             file.write(opt_str + "\n")
             file.write("---------------------------------------------------------------\n\n\n")
