@@ -2,6 +2,7 @@ from state import State
 from bidirectional_direction import BidirectionalDirection
 from priority_queue import PriorityQueue
 from data import Data
+import math
 
 
 class BiDirAStar:

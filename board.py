@@ -125,21 +125,21 @@ class Board:
                 cars_blocking = cars_blocking + 1
         return cars_blocking
 
-    def calculate_bidirectional_heuristic_value(self, goal_board):
-        overall = 0
-        for car_name, car in self.cars.items():
-            goal_car = goal_board.get_car_by_name(car_name)
-            x_diff = abs(goal_car.x - car.x)
-            y_diff = abs(goal_car.y - car.y)
-            if x_diff > 0 or y_diff > 0:
-                overall = overall + 1
-            # overall = overall + x_diff + y_diff
-        return overall
+    # def calculate_bidirectional_heuristic_value(self, goal_board):
+    #     overall = 0
+    #     for car_name, car in self.cars.items():
+    #         goal_car = goal_board.get_car_by_name(car_name)
+    #         x_diff = abs(goal_car.x - car.x)
+    #         y_diff = abs(goal_car.y - car.y)
+    #         # if x_diff > 0 or y_diff > 0:
+    #         #     overall = overall + 1
+    #         overall = overall + x_diff + y_diff
+    #     return overall
 
     def calculate_backward_heuristic_value(self, heuristic, goal_board):
         backward_h_value = self.calculate_heuristic_value(heuristic)
         goal_h_value = goal_board.calculate_heuristic_value(heuristic)
-        return self.calculate_bidirectional_heuristic_value(goal_board)
+        return abs(goal_h_value - backward_h_value)
 
     # Calculate the heuristic function and return its value.
     # Parameter "calc_blocked_blocking", if true, we add 1 for each X-blocking car that is also blocked.
