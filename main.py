@@ -8,7 +8,7 @@ import cProfile, pstats, io
 
 def main():
     time_limit, algorithm_num, indicator_num, heuristic_num, difficulty = parse_cmd()
-    heuristics = get_heuristic_list(heuristic_num)
+    heuristics = [Heuristic.X_BLOCKING_CARS, Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE, Heuristic.X_BLOCKING_CARS_BLOCKING_CARS, Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE_BLOCKING_CARS]#get_heuristic_list(heuristic_num)
     indicators = get_indicators_list(indicator_num)
     use_difficulty = difficulty == 1
     list_of_boards = parse_list_of_boards()
@@ -17,7 +17,7 @@ def main():
     for j, heuristic in enumerate(heuristics):
         delete_existing_files(heuristic)
         heuristic_data = OverallData()
-        print("Running with heuristic function " + str(j))
+        print("Running with heuristic function " + str(j + 1))
         for i, board in enumerate(list_of_boards):
             print("Solving board number " + str(i + 1))
             data = Data(i, heuristic, time_limit, indicators, list_of_solutions[i], minimum_cost_paths[i],

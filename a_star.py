@@ -60,13 +60,15 @@ class AStar:
                         # Step 6.3: If j was already on either OPEN or CLOSED, compare the f value just calculated for j
                         # with the value previously associated with the node.
                         if expanded_state.f_value < f_values[hash(expanded_state.board.grid_to_str())]:
-                            f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
                             # Step 6.3.1: Substitute it for the old value.
+                            f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
                             if expanded_state.is_expansion_in_closed_list(closed_list):
                                 # Step 6.3.2: Point j back to i instead of to its previously found predecessor.
                                 # Step 6.3.3: If node j was on the CLOSED list, move it back to OPEN
                                 open_list.push(expanded_state)
                                 expanded_state.remove_state(closed_list)
+                            else:
+                                open_list.update_predecessor(expanded_state)
         if f_limit == math.inf:
             self.data.finalize("FAILED", 0, open_list)
         return None

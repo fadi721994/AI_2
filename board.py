@@ -113,9 +113,9 @@ class Board:
 
     def cars_blocking_blocking_car_num(self, car):
         cars_blocking = 0
-        if car.size == 2 \
-                and ((car.x == 1 and self.grid[0][car.y] != '.') or (car.x == 2 and self.grid[4][car.y] != '.')):
-            cars_blocking = cars_blocking + 1
+        if car.size == 2:
+            if not self.can_car_move(car):
+                cars_blocking = cars_blocking + 1
         else:
             if self.grid[5][car.y] != '.' and self.grid[5][car.y] != car.name:
                 cars_blocking = cars_blocking + 1
@@ -135,9 +135,9 @@ class Board:
         return overall
 
     def calculate_backward_heuristic_value(self, heuristic, goal_board):
-        forward_h_value = goal_board.calculate_heuristic_value(heuristic)
         backward_h_value = self.calculate_heuristic_value(heuristic)
-        return forward_h_value - backward_h_value
+        goal_h_value = goal_board.calculate_heuristic_value(heuristic)
+        return abs(goal_h_value - backward_h_value)
 
     # Calculate the heuristic function and return its value.
     # Parameter "calc_blocked_blocking", if true, we add 1 for each X-blocking car that is also blocked.

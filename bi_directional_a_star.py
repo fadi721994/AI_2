@@ -55,7 +55,6 @@ class BiDirAStar:
         backward_steps = list(reversed(backward_state.get_solution_steps()))
         forward_solution_str = self.backward_begin_state.create_solution_string(forward_steps, False)
         backward_solution_str = self.backward_begin_state.create_solution_string(backward_steps, True, True)
-
         solution_str = forward_solution_str + ' ' + backward_solution_str
         self.finalize_data()
         for entry in self.backward_open_list.queue:
@@ -72,20 +71,24 @@ class BiDirAStar:
         expanded_states = state.expand_state(self.forward_data)
         for expanded_state in expanded_states:
             if hash(expanded_state.board.grid_to_str()) not in self.forward_f_values:
-                self.forward_open_list.push(expanded_state, self.forward_data.bidirectional_direction,
-                                            self.forward_data.goal_board)
+                self.forward_open_list.push(expanded_state, self.backward_f_values,
+                                            self.forward_data.bidirectional_direction)
                 self.forward_f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
             else:
                 # Step 6.3: If j was already on either OPEN or CLOSED, compare the f value just calculated for j
                 # with the value previously associated with the node.
                 if expanded_state.f_value < self.forward_f_values[hash(expanded_state.board.grid_to_str())]:
-                    self.forward_f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
                     # Step 6.3.1: Substitute it for the old value.
+                    self.forward_f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
                     if expanded_state.is_expansion_in_closed_list(self.forward_closed_list):
                         # Step 6.3.2: Point j back to i instead of to its previously found predecessor.
                         # Step 6.3.3: If node j was on the CLOSED list, move it back to OPEN
-                        self.forward_open_list.push(expanded_state)
+                        self.forward_open_list.push(expanded_state, self.backward_f_values,
+                                                    self.forward_data.bidirectional_direction)
                         expanded_state.remove_state(self.forward_closed_list)
+                    else:
+                        self.forward_open_list.update_predecessor(expanded_state, self.backward_f_values,
+                                                                  self.forward_data.bidirectional_direction)
         return None
 
     def backward_step(self):
@@ -97,20 +100,25 @@ class BiDirAStar:
         expanded_states = state.expand_state(self.backward_data)
         for expanded_state in expanded_states:
             if hash(expanded_state.board.grid_to_str()) not in self.backward_f_values:
-                self.backward_open_list.push(expanded_state, self.backward_data.bidirectional_direction,
-                                             self.backward_data.goal_board)
+                self.backward_open_list.push(expanded_state, self.forward_f_values,
+                                             self.backward_data.bidirectional_direction)
                 self.backward_f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
             else:
                 # Step 6.3: If j was already on either OPEN or CLOSED, compare the f value just calculated for j
                 # with the value previously associated with the node.
                 if expanded_state.f_value < self.backward_f_values[hash(expanded_state.board.grid_to_str())]:
-                    self.backward_f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
                     # Step 6.3.1: Substitute it for the old value.
+                    self.backward_f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
                     if expanded_state.is_expansion_in_closed_list(self.backward_closed_list):
                         # Step 6.3.2: Point j back to i instead of to its previously found predecessor.
                         # Step 6.3.3: If node j was on the CLOSED list, move it back to OPEN
-                        self.backward_open_list.push(expanded_state)
+                        self.backward_open_list.push(expanded_state, self.forward_f_values,
+                                                     self.backward_data.bidirectional_direction)
                         expanded_state.remove_state(self.backward_closed_list)
+                    else:
+                        self.backward_open_list.update_predecessor(expanded_state, self.forward_f_values,
+                                                                   self.backward_data.bidirectional_direction)
+
         return None
 
     def get_backward_state(self, state):

@@ -22,6 +22,22 @@ class State:
             return True
         return False
 
+    def print_path(self):
+        state = self
+        while state.prev_state is not None:
+            if state.prev_state.step_taken is not None:
+                state.prev_state.step_taken.print_step()
+            state = state.prev_state
+
+    def print_expansion_info(self):
+        print()
+        print("Expanding state")
+        self.board.pretty_print()
+        if self.step_taken is not None:
+            self.step_taken.print_step()
+        self.print_path()
+        print("F value is " + str(self.f_value))
+
     # Expand a state, and return a list of all the possible states that can be reached from the state.
     def expand_state(self, data):
         list_of_expansions = []
@@ -183,3 +199,4 @@ class State:
             state.step_taken = None
             state.depth = 0
         return state
+
