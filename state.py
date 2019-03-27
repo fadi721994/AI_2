@@ -22,22 +22,6 @@ class State:
             return True
         return False
 
-    def print_path(self):
-        state = self
-        while state.prev_state is not None:
-            if state.prev_state.step_taken is not None:
-                state.prev_state.step_taken.print_step()
-            state = state.prev_state
-
-    def print_expansion_info(self):
-        print()
-        print("Expanding state")
-        self.board.pretty_print()
-        if self.step_taken is not None:
-            self.step_taken.print_step()
-        self.print_path()
-        print("F value is " + str(self.f_value))
-
     # Expand a state, and return a list of all the possible states that can be reached from the state.
     def expand_state(self, data):
         list_of_expansions = []
@@ -67,6 +51,7 @@ class State:
             new_state.f_value = new_state.calculate_f(data)
         return new_state
 
+    # Evaluate the indicator for the overall free cars number.
     def evaluate_overall_free_cars(self):
         cur_blocked_cars = self.board.num_of_blocked_cars()
         prev_blocked_cars = self.prev_state.board.num_of_blocked_cars()
@@ -76,6 +61,7 @@ class State:
             return -1
         return 0
 
+    # Evaluate the indicator for the board freedom degree.
     def evaluate_board_freedom_degree(self):
         if len(self.board.special_cells) == 0:
             return 0
@@ -87,6 +73,7 @@ class State:
             return -1
         return 0
 
+    # Evaluate an indicator that is sent to the function. Returns 0, -1, or 1.
     def evaluate_indicator(self, indicator):
         if self.prev_state is None:
             return 0
@@ -174,19 +161,13 @@ class State:
             return True
         return False
 
-    def is_state_in_list(self, closed_list):
-        grid_str = self.board.grid_to_str()
-        for entry in closed_list:
-            if entry.board.grid_to_str() == grid_str:
-                return True
-        return False
-
     # Remove state from the closed list.
     def remove_state(self, closed_list):
         hash_num = hash(self.board.grid_to_str())
         if hash_num in closed_list:
             closed_list.remove(hash_num)
 
+    # Receives state, and runs the minimum cost path on it to generate a goal state.
     def run_steps_on_board(self, data, reset_data=True, calculate_f_value=True):
         steps_list = utils.from_steps_str_to_object(data.min_cost_path)
         state = self

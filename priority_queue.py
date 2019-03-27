@@ -23,7 +23,7 @@ class PriorityQueue:
     def is_not_empty(self):
         return len(self.queue) != 0
 
-    def update_predecessor(self, state, other_list=None, bidirectional_direction=BidirectionalDirection.NONE):
+    def check_and_update(self, state, other_list=None, bidirectional_direction=BidirectionalDirection.NONE):
         hash_str = hash(state.board.grid_to_str())
         removed = False
         for node in self.queue:

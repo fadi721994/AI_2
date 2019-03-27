@@ -2,8 +2,7 @@ from state import State
 from bidirectional_direction import BidirectionalDirection
 from priority_queue import PriorityQueue
 from data import Data
-import math
-
+import utils
 
 class BiDirAStar:
     def __init__(self, board, data):
@@ -44,11 +43,17 @@ class BiDirAStar:
             forward_state = self.forward_step()
             if forward_state is not None:
                 state = self.get_backward_state(forward_state)
-                return self.get_solution(forward_state, state)
+                solution = self.get_solution(forward_state, state)
+                optimal = utils.validate_solution(self.data.min_cost_path, solution)
+                if optimal != -1:
+                    return solution
             backward_state = self.backward_step()
             if backward_state is not None:
                 state = self.get_forward_state(backward_state)
-                return self.get_solution(state, backward_state)
+                solution = self.get_solution(state, backward_state)
+                optimal = utils.validate_solution(self.data.min_cost_path, solution)
+                if optimal != -1:
+                    return solution
         return None
 
     def get_solution(self, forward_state, backward_state):
@@ -88,7 +93,7 @@ class BiDirAStar:
                                                     self.forward_data.bidirectional_direction)
                         expanded_state.remove_state(self.forward_closed_list)
                     else:
-                        self.forward_open_list.update_predecessor(expanded_state, self.backward_f_values,
+                        self.forward_open_list.check_and_update(expanded_state, self.backward_f_values,
                                                                   self.forward_data.bidirectional_direction)
         return None
 
@@ -117,7 +122,7 @@ class BiDirAStar:
                                                      self.backward_data.bidirectional_direction)
                         expanded_state.remove_state(self.backward_closed_list)
                     else:
-                        self.backward_open_list.update_predecessor(expanded_state, self.forward_f_values,
+                        self.backward_open_list.check_and_update(expanded_state, self.forward_f_values,
                                                                    self.backward_data.bidirectional_direction)
 
         return None

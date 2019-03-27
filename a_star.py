@@ -68,7 +68,7 @@ class AStar:
                                 open_list.push(expanded_state)
                                 expanded_state.remove_state(closed_list)
                             else:
-                                open_list.update_predecessor(expanded_state)
+                                open_list.check_and_update(expanded_state)
         if f_limit == math.inf:
             self.data.finalize("FAILED", 0, open_list)
         return None

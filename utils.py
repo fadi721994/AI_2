@@ -93,7 +93,7 @@ def parse_cmd():
     parser.add_argument('-T', default=15, help='Time limit')
     parser.add_argument('-A', default=2, help='Algorithm number')
     parser.add_argument('-I', default=0, help='Indicator number')
-    parser.add_argument('-H', default=3, help='Heuristic number')
+    parser.add_argument('-H', default=0, help='Heuristic number')
     parser.add_argument('-D', default=0, help='Use difficulty as input')
     args = parser.parse_args()
     try:
