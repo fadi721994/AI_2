@@ -8,8 +8,6 @@ from bidirectional_direction import BidirectionalDirection
 
 class Board:
     def __init__(self, board_line, special_cells, width=6, height=6):
-        if len(board_line) % width != 0 or len(board_line) / width != height:
-            raise Exception("Board input " + board_line + " cannot be split into 6 rows")
         board_line = [board_line[i:i + width] for i in range(0, len(board_line), width)]
         self.width = width
         self.height = height
@@ -24,7 +22,6 @@ class Board:
 
     # Read the grid lines and create car objects and add them to list.
     def create_cars(self):
-        assert(len(self.grid) == 6)
         for row_num, row in enumerate(self.grid):
             for col_num, col in enumerate(row):
                 if col == ".":
@@ -34,7 +31,7 @@ class Board:
                 y = col_num
                 if self.car_name_exists(name):
                     continue
-                if col_num < 4 and row[col_num] == row[col_num + 1] == row[col_num + 2]:
+                if col_num < 4 and row[col_num] == row[col_num + 2]:
                     size = 3
                     orientation = Orientation.HORIZONTAL
                     car = Car(name, x, y, size, orientation)
@@ -44,8 +41,7 @@ class Board:
                     orientation = Orientation.HORIZONTAL
                     car = Car(name, x, y, size, orientation)
                     self.cars[name] = car
-                elif row_num < 4 and self.grid[row_num][col_num] == self.grid[row_num + 1][col_num]\
-                        == self.grid[row_num + 2][col_num]:
+                elif row_num < 4 and self.grid[row_num][col_num] == self.grid[row_num + 2][col_num]:
                     size = 3
                     orientation = Orientation.VERTICAL
                     car = Car(name, x, y, size, orientation)
@@ -111,6 +107,7 @@ class Board:
                     value = value + self.cars_blocking_blocking_car_num(car)
         return value
 
+    # Calculate the number of cars blocking a car to its final theoretical destination.
     def cars_blocking_blocking_car_num(self, car):
         cars_blocking = 0
         if car.size == 2:
@@ -125,30 +122,20 @@ class Board:
                 cars_blocking = cars_blocking + 1
         return cars_blocking
 
-    # def calculate_bidirectional_heuristic_value(self, goal_board):
-    #     overall = 0
-    #     for car_name, car in self.cars.items():
-    #         goal_car = goal_board.get_car_by_name(car_name)
-    #         x_diff = abs(goal_car.x - car.x)
-    #         y_diff = abs(goal_car.y - car.y)
-    #         # if x_diff > 0 or y_diff > 0:
-    #         #     overall = overall + 1
-    #         overall = overall + x_diff + y_diff
-    #     return overall
-
+    # Calculate the backwards heuristic.
     def calculate_backward_heuristic_value(self, heuristic, goal_board):
         backward_h_value = self.calculate_heuristic_value(heuristic)
         goal_h_value = goal_board.calculate_heuristic_value(heuristic)
         return abs(goal_h_value - backward_h_value)
 
     # Calculate the heuristic function and return its value.
-    # Parameter "calc_blocked_blocking", if true, we add 1 for each X-blocking car that is also blocked.
     def calculate_h(self, heuristic, bidirectional_direction, goal_board):
         if bidirectional_direction == BidirectionalDirection.BACKWARD:
             return self.calculate_backward_heuristic_value(heuristic, goal_board)
         heuristic_value = self.calculate_heuristic_value(heuristic)
         return heuristic_value
 
+    # Pretty print.
     def pretty_print(self):
         for line in self.grid:
             row = ''
@@ -156,6 +143,7 @@ class Board:
                 row = row + entry + " "
             print(row)
 
+    # Get the total number of cars that are blocked on the board. Blocked cars are ones that cannot be moved.
     def num_of_blocked_cars(self):
         blocked_cars = 0
         for car_name, car in self.cars.items():
@@ -189,6 +177,7 @@ class Board:
                     return False
         return True
 
+    # Check if cell (x,y) can be reached by only one car.
     def can_one_car_only_reach(self, x, y):
         reaching_cars = 0
         name = ''
@@ -203,6 +192,7 @@ class Board:
             return True, name
         return False, None
 
+    # Find all special cells at the beginning of the run.
     def initialize_special_cells(self):
         self.special_cells = []
         for y in range(6):
@@ -211,6 +201,7 @@ class Board:
                 if is_special:
                     self.special_cells.append(SpecialCell(x, y, car_name))
 
+    # Check if special cell is occupied.
     def occupied_special_cells(self):
         occupied = 0
         for cell in self.special_cells:

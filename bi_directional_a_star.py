@@ -4,6 +4,7 @@ from priority_queue import PriorityQueue
 from data import Data
 import utils
 
+
 class BiDirAStar:
     def __init__(self, board, data):
         self.board = board
@@ -38,6 +39,10 @@ class BiDirAStar:
         self.backward_f_values[hash(self.backward_begin_state.board.grid_to_str())] = f
         self.backward_open_list.push(self.backward_begin_state)
 
+        self.forward_prev_state = None
+        self.backward_prev_sate = None
+
+    # This method solves the board and returns the solution.
     def solve_board(self):
         while self.forward_open_list.is_not_empty() and self.backward_open_list.is_not_empty():
             forward_state = self.forward_step()
@@ -56,6 +61,8 @@ class BiDirAStar:
                     return solution
         return None
 
+    # After finding a state that exists in both the open list for forward search and the open list for backward search
+    # Call this function to get the solution.
     def get_solution(self, forward_state, backward_state):
         forward_steps = forward_state.get_solution_steps()
         backward_steps = list(reversed(backward_state.get_solution_steps()))
@@ -65,11 +72,14 @@ class BiDirAStar:
         self.finalize_data()
         for entry in self.backward_open_list.queue:
             self.forward_open_list.push(entry.state)
-        self.data.finalize(solution_str, len(forward_steps + backward_steps), self.forward_open_list)
+        self.data.finalize(solution_str, len(forward_steps + backward_steps))
         return solution_str
 
+    # Take one forward A star step.
     def forward_step(self):
         state = self.forward_open_list.pop().state
+        utils.update_depths(state, self.forward_prev_state, self.data)
+        self.forward_prev_state = state
         self.forward_data.scanned_nodes = self.forward_data.scanned_nodes + 1
         self.forward_closed_list.add(hash(state.board.grid_to_str()))
         if hash(state.board.grid_to_str()) in self.backward_f_values:
@@ -94,11 +104,14 @@ class BiDirAStar:
                         expanded_state.remove_state(self.forward_closed_list)
                     else:
                         self.forward_open_list.check_and_update(expanded_state, self.backward_f_values,
-                                                                  self.forward_data.bidirectional_direction)
+                                                                self.forward_data.bidirectional_direction)
         return None
 
+    # Take one backward A star step.
     def backward_step(self):
         state = self.backward_open_list.pop().state
+        utils.update_depths(state, self.backward_prev_sate, self.data)
+        self.backward_prev_sate = state
         self.backward_data.scanned_nodes = self.backward_data.scanned_nodes + 1
         self.backward_closed_list.add(hash(state.board.grid_to_str()))
         if hash(state.board.grid_to_str()) in self.forward_f_values:
@@ -123,10 +136,11 @@ class BiDirAStar:
                         expanded_state.remove_state(self.backward_closed_list)
                     else:
                         self.backward_open_list.check_and_update(expanded_state, self.forward_f_values,
-                                                                   self.backward_data.bidirectional_direction)
+                                                                 self.backward_data.bidirectional_direction)
 
         return None
 
+    # Given a forward state, check if it exists in the backward open list.
     def get_backward_state(self, state):
         hash_str = hash(state.board.grid_to_str())
         for node in self.backward_open_list.queue:
@@ -134,6 +148,7 @@ class BiDirAStar:
                 return node.state
         return None
 
+    # Given a backward state, check if it exists in the forward open list.
     def get_forward_state(self, state):
         hash_str = hash(state.board.grid_to_str())
         for node in self.forward_open_list.queue:
@@ -141,6 +156,8 @@ class BiDirAStar:
                 return node.state
         return None
 
+    # Combine the relevant data after the bidirectional search.
     def finalize_data(self):
         self.data.scanned_nodes = self.forward_data.scanned_nodes + self.backward_data.scanned_nodes
         self.data.heuristic_values = self.forward_data.heuristic_values + self.backward_data.heuristic_values
+

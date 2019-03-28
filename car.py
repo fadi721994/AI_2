@@ -25,6 +25,7 @@ class Car:
                 steps.append(step)
                 i = i + 1
 
+    # Return the theoretical number of steps that need to be taken by a car to clear the path for X.
     def steps_to_clear_path(self):
         if self.size == 2:
             return 1

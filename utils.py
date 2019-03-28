@@ -85,13 +85,13 @@ def read_min_cost_paths():
 
 # Calculate average of a list.
 def calc_avg(data_list):
-    return str(sum(data_list)/len(data_list))
+    return str(round(sum(data_list)/len(data_list), 3))
 
 
 def parse_cmd():
     parser = argparse.ArgumentParser()
     parser.add_argument('-T', default=15, help='Time limit')
-    parser.add_argument('-A', default=2, help='Algorithm number')
+    parser.add_argument('-A', default=0, help='Algorithm number')
     parser.add_argument('-I', default=0, help='Indicator number')
     parser.add_argument('-H', default=0, help='Heuristic number')
     parser.add_argument('-D', default=0, help='Use difficulty as input')
@@ -141,6 +141,11 @@ def parse_cmd():
     except ValueError:
         print("Input entered for difficulty is not a number")
         exit(1)
+    if algorithm != 0:
+        indicator = 0
+        difficulty = 0
+    if algorithm == 1 and time_limit == 15:
+        time_limit = 30
     return time_limit, algorithm, indicator, heuristic_num, difficulty
 
 
@@ -193,3 +198,13 @@ def get_heuristic_list(heuristic_num):
     elif heuristic_num == 3:
         return [Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE_BLOCKING_CARS]
     return [Heuristic.BLOCKING_CARS]
+
+
+def update_depths(state, prev_state, data):
+    if state is not None and prev_state is not None:
+        if state.depth != prev_state.depth - 1 and prev_state.depth > 0:
+            if data.min_depth > prev_state.depth:
+                data.min_depth = prev_state.depth
+    if state.depth > data.max_depth:
+        data.max_depth = state.depth
+    data.depths.append(state.depth)

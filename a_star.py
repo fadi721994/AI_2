@@ -1,6 +1,7 @@
 from state import State
 from priority_queue import PriorityQueue
 import math
+import utils
 
 
 class AStar:
@@ -19,6 +20,7 @@ class AStar:
         open_list = PriorityQueue()
         closed_list = set()
 
+        prev_state = None
         # Step 1: Put the start node on a list called OPEN of unexpanded nodes.
         # Calculate f(s) and associate its value with node s.
         open_list.push(root_state)
@@ -30,6 +32,9 @@ class AStar:
             if self.data.update_action_weights:
                 self.data.reinforcement_learning(state)
 
+            utils.update_depths(state, prev_state, self.data)
+            prev_state = state
+
             # Step 4: Remove node i from OPEN and place it on a list called CLOSED, of expanded nodes.
             self.data.scanned_nodes = self.data.scanned_nodes + 1
             closed_list.add(hash(state.board.grid_to_str()))
@@ -39,7 +44,7 @@ class AStar:
                 if state.goal_state():
                     solution_steps = state.get_solution_steps()
                     solution_str = state.create_solution_string(solution_steps)
-                    self.data.finalize(solution_str, len(solution_steps), open_list)
+                    self.data.finalize(solution_str, len(solution_steps))
                     return solution_str
 
             # Step 6: Expand node i, creating nodes for all of its successors. For every successor node j of i:
@@ -70,5 +75,5 @@ class AStar:
                             else:
                                 open_list.check_and_update(expanded_state)
         if f_limit == math.inf:
-            self.data.finalize("FAILED", 0, open_list)
+            self.data.finalize("FAILED", 0)
         return None

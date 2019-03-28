@@ -1,14 +1,14 @@
 from utils import *
 from data import Data
-from heuristic import Heuristic
 from indicator import Indicator
 from overall_data import OverallData
 import cProfile, pstats, io
+from heuristic import Heuristic
 
 
 def main():
     time_limit, algorithm_num, indicator_num, heuristic_num, difficulty = parse_cmd()
-    heuristics = get_heuristic_list(heuristic_num)
+    heuristics = [Heuristic.X_BLOCKING_CARS, Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE, Heuristic.X_BLOCKING_CARS_BLOCKING_CARS, Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE_BLOCKING_CARS]# get_heuristic_list(heuristic_num)
     indicators = get_indicators_list(indicator_num)
     use_difficulty = difficulty == 1
     list_of_boards = parse_list_of_boards()
@@ -17,8 +17,10 @@ def main():
     for j, heuristic in enumerate(heuristics):
         delete_existing_files(heuristic)
         heuristic_data = OverallData()
-        print("Running with heuristic function " + str(j + 1))
+        print("Running with heuristic function " + str(j))
         for i, board in enumerate(list_of_boards):
+            if i != 12 and i != 13:
+                continue
             print("Solving board number " + str(i + 1))
             data = Data(i, heuristic, time_limit, indicators, list_of_solutions[i], minimum_cost_paths[i],
                         use_difficulty)
@@ -31,12 +33,12 @@ def main():
     print("Finished")
 
 
-# pr = cProfile.Profile()
-# pr.enable()
+pr = cProfile.Profile()
+pr.enable()
 main()
-# pr.disable()
-# s = io.StringIO()
-# sortby = 'cumulative'
-# ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
-# ps.print_stats()
-# print(s.getvalue())
+pr.disable()
+s = io.StringIO()
+sortby = 'cumulative'
+ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+ps.print_stats()
+print(s.getvalue())

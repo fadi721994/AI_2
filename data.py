@@ -40,6 +40,7 @@ class Data:
         self.update_action_weights = False
         self.actions = []
 
+    # The limit of the difficulty that the solution cannot be longer than.
     def get_difficulty_depth_limit(self):
         if self.difficulty == Difficulty.BEGINNER:
             return 20
@@ -50,6 +51,7 @@ class Data:
         else:
             return 60
 
+    # The minimum length of solution for a specific difficulty.
     def get_difficulty_depth_min(self):
         if self.difficulty == Difficulty.BEGINNER:
             return 6
@@ -60,6 +62,7 @@ class Data:
         else:
             return 35
 
+    # Get difficulty according to board number.
     def get_difficulty(self):
         if self.board_num < 10:
             return Difficulty.BEGINNER
@@ -69,15 +72,6 @@ class Data:
             return Difficulty.ADVANCED
         return Difficulty.EXPERT
 
-    # Given the open list, find the tree depths data, minimum, maximum and average.
-    def find_tree_depth_data(self, open_list):
-        for entry in open_list.queue:
-            state = entry.state
-            self.depths.append(state.depth)
-        self.min_depth = min(self.depths)
-        self.max_depth = max(self.depths)
-        self.avg_depth = sum(self.depths)/len(self.depths)
-
     def get_penetrance(self):
         return self.solution_depth / self.scanned_nodes
 
@@ -85,16 +79,16 @@ class Data:
         return self.scanned_nodes ** (1 / self.solution_depth)
 
     # Finalize the data and write to the output files.
-    def finalize(self, solution, sol_depth, open_list=None):
+    def finalize(self, solution, sol_depth):
         self.end_time = time.time()
         self.run_time = self.end_time - self.start_time
         self.solution = solution
         self.solution_depth = sol_depth
         self.heuristic_avg = sum(self.heuristic_values) / len(self.heuristic_values)
         penetrance = self.get_penetrance()
-        if open_list is not None and solution != "FAILED":
+        if solution != "FAILED":
             ebf = self.get_ebf()
-            self.find_tree_depth_data(open_list)
+            self.avg_depth = sum(self.depths) / len(self.depths)
         else:
             ebf = 0
             self.solution = "FAILED"
@@ -114,10 +108,9 @@ class Data:
             file.write("Run time: " + str(self.run_time) + "\n")
             file.write("Heuristic function average: " + str(self.heuristic_avg) + "\n")
             file.write("EBF: " + str(ebf) + "\n")
-            if open_list is not None:
-                file.write("Minimum tree depth: " + str(self.min_depth + 1) + "\n")
-                file.write("Average tree depth: " + str(self.avg_depth + 1) + "\n")
-                file.write("Maximum tree depth: " + str(self.max_depth + 1) + "\n")
+            file.write("Minimum tree depth: " + str(self.min_depth) + "\n")
+            file.write("Average tree depth: " + str(self.avg_depth) + "\n")
+            file.write("Maximum tree depth: " + str(self.max_depth) + "\n")
 
     # Append to the data detailed output file whether the solution is optimal or not.
     def add_optimality(self, solution, suggested_solution):
