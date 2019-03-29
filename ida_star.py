@@ -17,6 +17,6 @@ class IDAStar:
             solution_str = a_star.solve_board(f_limit)
             if solution_str is not None:
                 return solution_str
-            f_limit = f_limit + 2
+            f_limit = f_limit + 5
         return None
 

@@ -130,6 +130,7 @@ class Data:
             file.write(opt_str + "\n")
             file.write("---------------------------------------------------------------\n\n\n")
 
+    # Update weights for reinforcement learning according to the taken step.
     def reinforcement_learning(self, state):
         step = state.step_taken
         if step is None:
@@ -140,12 +141,14 @@ class Data:
         else:
             action.weight = action.weight + 1
 
+    # Check if action is in min cost solution path.
     def is_action_in_sol_path(self, action):
         for step in self.min_cost_path_steps:
             if step.direction == action.direction and step.car_name == action.car.name:
                 return True
         return False
 
+    # Return an action object given a step
     def get_action(self, step):
         for action in self.actions:
             if action.car.name == step.car_name and action.direction == step.direction:

@@ -72,6 +72,7 @@ def read_solutions():
     return solutions
 
 
+# Reads the minimum cost path file and returns a list of the min cost paths
 def read_min_cost_paths():
     solutions = []
     with open("minimum_cost_path.txt", 'r') as f:
@@ -88,10 +89,11 @@ def calc_avg(data_list):
     return str(round(sum(data_list)/len(data_list), 3))
 
 
+# Parse cmd
 def parse_cmd():
     parser = argparse.ArgumentParser()
     parser.add_argument('-T', default=15, help='Time limit')
-    parser.add_argument('-A', default=0, help='Algorithm number')
+    parser.add_argument('-A', default=1, help='Algorithm number')
     parser.add_argument('-I', default=0, help='Indicator number')
     parser.add_argument('-H', default=0, help='Heuristic number')
     parser.add_argument('-D', default=0, help='Use difficulty as input')
@@ -145,7 +147,7 @@ def parse_cmd():
         indicator = 0
         difficulty = 0
     if algorithm == 1 and time_limit == 15:
-        time_limit = 30
+        time_limit = 45
     return time_limit, algorithm, indicator, heuristic_num, difficulty
 
 
@@ -159,6 +161,7 @@ def delete_existing_files(heuristic):
         os.remove("./reinforcement_learning_h" + str(file_num) + ".txt")
 
 
+# Transform a steps string to step objects list
 def from_steps_str_to_object(steps):
     steps_strs = steps.split(' ')[:-1]
     steps_objs = []
@@ -176,6 +179,7 @@ def from_steps_str_to_object(steps):
     return steps_objs
 
 
+# Return the list of indicators for the run according to the flag given
 def get_indicators_list(indicator_num):
     if indicator_num == 0:
         return []
@@ -188,6 +192,7 @@ def get_indicators_list(indicator_num):
     return []
 
 
+# Return the heuristic for the according to the flag given.
 def get_heuristic_list(heuristic_num):
     if heuristic_num == 0:
         return [Heuristic.X_BLOCKING_CARS]
@@ -200,6 +205,7 @@ def get_heuristic_list(heuristic_num):
     return [Heuristic.BLOCKING_CARS]
 
 
+# Update the depth of the run. Min depth, Max depth, and add to the overall depth.
 def update_depths(state, prev_state, data):
     if state is not None and prev_state is not None:
         if state.depth != prev_state.depth - 1 and prev_state.depth > 0:
@@ -208,3 +214,14 @@ def update_depths(state, prev_state, data):
     if state.depth > data.max_depth:
         data.max_depth = state.depth
     data.depths.append(state.depth)
+
+
+def get_direction_initial(direction):
+    if direction == Direction.UP:
+        return "U"
+    elif direction == Direction.DOWN:
+        return "D"
+    elif direction == Direction.LEFT:
+        return "L"
+    else:
+        return "R"
