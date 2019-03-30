@@ -3,7 +3,6 @@ from priority_queue import PriorityQueue
 import math
 import utils
 from heuristic import Heuristic
-import collections
 
 
 class AStar:
@@ -62,8 +61,6 @@ class AStar:
                     if hash(expanded_state.board.grid_to_str()) not in f_values:
                         open_list.push(expanded_state)
                         f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
-                    elif self.data.heuristic == Heuristic.REINFORCEMENT_LEARNING:
-                        continue
                     else:
                         # Step 6.3: If j was already on either OPEN or CLOSED, compare the f value just calculated for j
                         # with the value previously associated with the node.

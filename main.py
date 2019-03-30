@@ -19,8 +19,6 @@ def main():
         heuristic_data = OverallData(heuristic)
         print("Running with heuristic function " + str(heuristic.value))
         for i, board in enumerate(list_of_boards):
-            if i != 0:
-                continue
             print("Solving board number " + str(i + 1))
             data = Data(i, heuristic, time_limit, indicators, list_of_solutions[i], minimum_cost_paths[i],
                         use_difficulty)
@@ -34,12 +32,12 @@ def main():
     print("Finished")
 
 
-# pr = cProfile.Profile()
-# pr.enable()
+pr = cProfile.Profile()
+pr.enable()
 main()
-# pr.disable()
-# s = io.StringIO()
-# sortby = 'cumulative'
-# ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
-# ps.print_stats()
-# print(s.getvalue())
+pr.disable()
+s = io.StringIO()
+sortby = 'cumulative'
+ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+ps.print_stats()
+print(s.getvalue())

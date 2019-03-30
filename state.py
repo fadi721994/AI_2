@@ -27,10 +27,16 @@ class State:
     # Expand a state, and return a list of all the possible states that can be reached from the state.
     def expand_state(self, data):
         list_of_expansions = []
+        reinforcement_steps = None
+        if data.heuristic == Heuristic.REINFORCEMENT_LEARNING:
+            reinforcement_steps = data.get_depth_best_moves(self.depth, self.board.cars)
         for car_name, car in self.board.cars.items():
             if self.board.can_car_move(car):
                 valid_steps = self.board.find_car_valid_steps(car)
                 for step in valid_steps:
+                    if data.heuristic == Heuristic.REINFORCEMENT_LEARNING and reinforcement_steps is not None:
+                        if step.to_string() not in reinforcement_steps:
+                            continue
                     expanded_state = self.create_expansion(step, data)
                     list_of_expansions.append(expanded_state)
         return list_of_expansions
@@ -89,11 +95,9 @@ class State:
     # Calculate the heuristic function and return its value.
     def calculate_h(self, data):
         if data.heuristic == Heuristic.REINFORCEMENT_LEARNING:
-            if self.step_taken is not None:
-                self.overall_h = self.overall_h + data.actions[self.step_taken.to_string()].weight
-                return self.overall_h
-            else:
-                return 0
+            self.overall_h = self.overall_h + data.get_action_weight(self.depth, self.step_taken)
+            return self.overall_h
+            # return data.get_action_weight(self.depth, self.step_taken)
         if data.bidirectional_direction == BidirectionalDirection.BACKWARD:
             return self.board.calculate_backward_heuristic_value(data.heuristic, data.goal_board)
         heuristic_value = self.board.calculate_heuristic_value(data.heuristic)

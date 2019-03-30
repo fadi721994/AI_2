@@ -4,11 +4,12 @@ from ida_star import IDAStar
 from heuristic import Heuristic
 from bi_directional_a_star import BiDirAStar
 from reinforcement_learning import ReinforcementLearning
-from direction import Direction
 from indicator import Indicator
 from step import Step
 import argparse
 import os
+from direction import Direction
+from orientation import Orientation
 
 
 # Read the boards from rh.txt file and provide a list of object "board"
@@ -227,3 +228,25 @@ def get_direction_initial(direction):
         return "L"
     else:
         return "R"
+
+
+# Create all actions for current board.
+def initialize_actions(cars):
+    actions = {}
+    for car_name, car in cars.items():
+        max_mov = 4
+        if car.size == 3:
+            max_mov = 3
+        if car.orientation == Orientation.VERTICAL:
+            for i in range(max_mov):
+                entry = car_name + get_direction_initial(Direction.UP) + str(i + 1)
+                actions[entry] = 0
+                entry = car_name + get_direction_initial(Direction.DOWN) + str(i + 1)
+                actions[entry] = 0
+        else:
+            for i in range(max_mov):
+                entry = car_name + get_direction_initial(Direction.LEFT) + str(i + 1)
+                actions[entry] = 0
+                entry = car_name + get_direction_initial(Direction.RIGHT) + str(i + 1)
+                actions[entry] = 0
+    return actions

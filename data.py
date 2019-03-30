@@ -1,8 +1,9 @@
 import math
 import time
-import utils
 from bidirectional_direction import BidirectionalDirection
 from difficulty import Difficulty
+from step import Step
+import utils
 
 
 class Data:
@@ -129,3 +130,30 @@ class Data:
         with open("detailed_output_h" + str(h_file) + ".txt", 'a') as file:
             file.write(opt_str + "\n")
             file.write("---------------------------------------------------------------\n\n\n")
+
+    def get_action_weight(self, depth, step_taken):
+        if step_taken is None:
+            return 0
+        step_str = step_taken.to_string()
+        if str(depth) in self.actions:
+            steps_hash = self.actions[str(depth)]
+            if step_str in steps_hash:
+                return steps_hash[step_str].weight
+            else:
+                return 0
+        else:
+            return 0
+
+    def get_depth_best_moves(self, depth, cars):
+        if depth not in self.actions:
+            self.actions[depth] = utils.initialize_actions(cars)
+        steps_hash = self.actions[depth]
+        min_step_list = []
+        min_value = int(min(steps_hash.items(), key=lambda x: x[1])[1])
+        for key, value in steps_hash.items():
+            if value == min_value:
+                min_step_list.append(key)
+        valid_steps = []
+        for step in min_step_list:
+            valid_steps.append(step)
+        return valid_steps
