@@ -2,6 +2,8 @@ from state import State
 from priority_queue import PriorityQueue
 import math
 import utils
+from heuristic import Heuristic
+import collections
 
 
 class AStar:
@@ -29,8 +31,6 @@ class AStar:
             # Step 3: Select from OPEN a node i at which f is minimum. If several nodes qualify,
             # choose a goal node if there is one, otherwise choose among them arbitrarily.
             state = open_list.pop().state
-            if self.data.update_action_weights:
-                self.data.reinforcement_learning(state)
 
             utils.update_depths(state, prev_state, self.data)
             prev_state = state
@@ -44,7 +44,8 @@ class AStar:
                 if state.goal_state():
                     solution_steps = state.get_solution_steps()
                     solution_str = state.create_solution_string(solution_steps)
-                    self.data.finalize(solution_str, len(solution_steps))
+                    if self.data.heuristic != Heuristic.REINFORCEMENT_LEARNING:
+                        self.data.finalize(solution_str, len(solution_steps))
                     return solution_str
 
             # Step 6: Expand node i, creating nodes for all of its successors. For every successor node j of i:
@@ -61,6 +62,8 @@ class AStar:
                     if hash(expanded_state.board.grid_to_str()) not in f_values:
                         open_list.push(expanded_state)
                         f_values[hash(expanded_state.board.grid_to_str())] = expanded_state.f_value
+                    elif self.data.heuristic == Heuristic.REINFORCEMENT_LEARNING:
+                        continue
                     else:
                         # Step 6.3: If j was already on either OPEN or CLOSED, compare the f value just calculated for j
                         # with the value previously associated with the node.

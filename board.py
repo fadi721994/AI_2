@@ -3,7 +3,6 @@ from direction import Direction
 from car import Car
 from heuristic import Heuristic
 from special_cell import SpecialCell
-from bidirectional_direction import BidirectionalDirection
 
 
 class Board:
@@ -127,13 +126,6 @@ class Board:
         backward_h_value = self.calculate_heuristic_value(heuristic)
         goal_h_value = goal_board.calculate_heuristic_value(heuristic)
         return abs(goal_h_value - backward_h_value)
-
-    # Calculate the heuristic function and return its value.
-    def calculate_h(self, heuristic, bidirectional_direction, goal_board):
-        if bidirectional_direction == BidirectionalDirection.BACKWARD:
-            return self.calculate_backward_heuristic_value(heuristic, goal_board)
-        heuristic_value = self.calculate_heuristic_value(heuristic)
-        return heuristic_value
 
     # Pretty print.
     def pretty_print(self):

@@ -38,7 +38,7 @@ class Data:
         self.bidirectional_direction = BidirectionalDirection.NONE
         self.goal_board = None
         self.update_action_weights = False
-        self.actions = []
+        self.actions = {}
 
     # The limit of the difficulty that the solution cannot be longer than.
     def get_difficulty_depth_limit(self):
@@ -129,27 +129,3 @@ class Data:
         with open("detailed_output_h" + str(h_file) + ".txt", 'a') as file:
             file.write(opt_str + "\n")
             file.write("---------------------------------------------------------------\n\n\n")
-
-    # Update weights for reinforcement learning according to the taken step.
-    def reinforcement_learning(self, state):
-        step = state.step_taken
-        if step is None:
-            return
-        action = self.get_action(step)
-        if self.is_action_in_sol_path(action):
-            action.weight = action.weight - 1
-        else:
-            action.weight = action.weight + 1
-
-    # Check if action is in min cost solution path.
-    def is_action_in_sol_path(self, action):
-        for step in self.min_cost_path_steps:
-            if step.direction == action.direction and step.car_name == action.car.name:
-                return True
-        return False
-
-    # Return an action object given a step
-    def get_action(self, step):
-        for action in self.actions:
-            if action.car.name == step.car_name and action.direction == step.direction:
-                return action

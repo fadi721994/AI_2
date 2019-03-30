@@ -93,7 +93,7 @@ def calc_avg(data_list):
 def parse_cmd():
     parser = argparse.ArgumentParser()
     parser.add_argument('-T', default=15, help='Time limit')
-    parser.add_argument('-A', default=1, help='Algorithm number')
+    parser.add_argument('-A', default=3, help='Algorithm number')
     parser.add_argument('-I', default=0, help='Indicator number')
     parser.add_argument('-H', default=0, help='Heuristic number')
     parser.add_argument('-D', default=0, help='Use difficulty as input')
@@ -193,7 +193,9 @@ def get_indicators_list(indicator_num):
 
 
 # Return the heuristic for the according to the flag given.
-def get_heuristic_list(heuristic_num):
+def get_heuristic_list(heuristic_num, algorithm_num):
+    if algorithm_num == 3:
+        return [Heuristic.REINFORCEMENT_LEARNING]
     if heuristic_num == 0:
         return [Heuristic.X_BLOCKING_CARS]
     elif heuristic_num == 1:

@@ -8,26 +8,29 @@ from heuristic import Heuristic
 
 def main():
     time_limit, algorithm_num, indicator_num, heuristic_num, difficulty = parse_cmd()
-    heuristics = [Heuristic.X_BLOCKING_CARS, Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE, Heuristic.X_BLOCKING_CARS_BLOCKING_CARS, Heuristic.X_BLOCKING_CARS_FINAL_POSITION_DISTANCE_BLOCKING_CARS]# get_heuristic_list(heuristic_num)
+    heuristics = get_heuristic_list(heuristic_num, algorithm_num)
     indicators = get_indicators_list(indicator_num)
     use_difficulty = difficulty == 1
     list_of_boards = parse_list_of_boards()
     list_of_solutions = read_solutions()
     minimum_cost_paths = read_min_cost_paths()
-    for j, heuristic in enumerate(heuristics):
+    for heuristic in heuristics:
         delete_existing_files(heuristic)
-        heuristic_data = OverallData()
-        print("Running with heuristic function " + str(j))
+        heuristic_data = OverallData(heuristic)
+        print("Running with heuristic function " + str(heuristic.value))
         for i, board in enumerate(list_of_boards):
+            if i != 0:
+                continue
             print("Solving board number " + str(i + 1))
             data = Data(i, heuristic, time_limit, indicators, list_of_solutions[i], minimum_cost_paths[i],
                         use_difficulty)
             algorithm = get_algorithm(algorithm_num, board, data)
             solution = algorithm.solve_board()
             data.add_optimality(solution, list_of_solutions[i])
-            if solution is not None:
+            if solution is not None and heuristic != Heuristic.REINFORCEMENT_LEARNING:
                 heuristic_data.add_data(data)
-        heuristic_data.print_avgs()
+        if heuristic != Heuristic.REINFORCEMENT_LEARNING:
+            heuristic_data.print_avgs()
     print("Finished")
 
 

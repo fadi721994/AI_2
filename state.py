@@ -2,6 +2,7 @@ from direction import Direction
 from board import Board
 from indicator import Indicator
 from bidirectional_direction import BidirectionalDirection
+from heuristic import Heuristic
 import utils
 
 
@@ -13,6 +14,7 @@ class State:
         self.steps = steps
         self.step_taken = step_taken
         self.depth = depth
+        self.overall_h = 0
 
     # Check if a state is a goal state.
     def goal_state(self):
@@ -47,6 +49,7 @@ class State:
         elif step.direction == Direction.UP:
             car.x = car.x - step.amount
         new_state.board.build_grid()
+        new_state.overall_h = self.overall_h
         if calculate_f_value:
             new_state.f_value = new_state.calculate_f(data)
         return new_state
@@ -83,9 +86,22 @@ class State:
             return self.evaluate_overall_free_cars()
         return 0
 
+    # Calculate the heuristic function and return its value.
+    def calculate_h(self, data):
+        if data.heuristic == Heuristic.REINFORCEMENT_LEARNING:
+            if self.step_taken is not None:
+                self.overall_h = self.overall_h + data.actions[self.step_taken.to_string()].weight
+                return self.overall_h
+            else:
+                return 0
+        if data.bidirectional_direction == BidirectionalDirection.BACKWARD:
+            return self.board.calculate_backward_heuristic_value(data.heuristic, data.goal_board)
+        heuristic_value = self.board.calculate_heuristic_value(data.heuristic)
+        return heuristic_value
+
     # Calculate the f function.
     def calculate_f(self, data):
-        h_value = self.board.calculate_h(data.heuristic, data.bidirectional_direction, data.goal_board)
+        h_value = self.calculate_h(data)
         for indicator in data.indicators:
             indicator_val = self.evaluate_indicator(indicator)
             if data.bidirectional_direction == BidirectionalDirection.BACKWARD:

@@ -2,7 +2,7 @@ from utils import calc_avg
 
 
 class OverallData:
-    def __init__(self):
+    def __init__(self, heuristic):
         self.solution_depth = []
         self.scanned_nodes = []
         self.penetrance = []
@@ -12,7 +12,7 @@ class OverallData:
         self.min_tree_depth = []
         self.max_tree_depth = []
         self.avg_tree_depth = []
-        self.heuristic = None
+        self.heuristic = heuristic
 
     # Add data for all the relevant fields from the run.
     def add_data(self, data):
@@ -25,7 +25,6 @@ class OverallData:
         self.min_tree_depth.append(data.min_depth)
         self.max_tree_depth.append(data.max_depth)
         self.avg_tree_depth.append(data.avg_depth)
-        self.heuristic = data.heuristic
 
     # Add the overall heuristic run averages to the details output files.
     def print_avgs(self):
