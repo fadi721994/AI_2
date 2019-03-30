@@ -1,6 +1,5 @@
 from utils import *
 from data import Data
-from indicator import Indicator
 from overall_data import OverallData
 import cProfile, pstats, io
 from heuristic import Heuristic
@@ -32,12 +31,12 @@ def main():
     print("Finished")
 
 
-pr = cProfile.Profile()
-pr.enable()
+# pr = cProfile.Profile()
+# pr.enable()
 main()
-pr.disable()
-s = io.StringIO()
-sortby = 'cumulative'
-ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
-ps.print_stats()
-print(s.getvalue())
+# pr.disable()
+# s = io.StringIO()
+# sortby = 'cumulative'
+# ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+# ps.print_stats()
+# print(s.getvalue())
