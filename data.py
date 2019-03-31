@@ -55,13 +55,13 @@ class Data:
     # The minimum length of solution for a specific difficulty.
     def get_difficulty_depth_min(self):
         if self.difficulty == Difficulty.BEGINNER:
-            return 6
+            return 5
         elif self.difficulty == Difficulty.INTERMEDIATE:
-            return 9
+            return 7
         elif self.difficulty == Difficulty.ADVANCED:
-            return 19
+            return 9
         else:
-            return 35
+            return 30
 
     # Get difficulty according to board number.
     def get_difficulty(self):

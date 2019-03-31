@@ -13,19 +13,31 @@ def main():
     list_of_boards = parse_list_of_boards()
     list_of_solutions = read_solutions()
     minimum_cost_paths = read_min_cost_paths()
+    print("Time limit for each board is " + str(time_limit) + " seconds")
+    print("Running algorithm " + str(algorithm_num))
+    using = 'Not using'
+    if difficulty:
+        using = 'Using'
+    training = "Solving"
+    if algorithm_num == 3:
+        training = "Training"
+    print(using + " difficulty level assistance")
+    for indicator in indicators:
+        print("Using indicator " + str(indicator.value))
     for heuristic in heuristics:
         delete_existing_files(heuristic)
         heuristic_data = OverallData(heuristic)
         print("Running with heuristic function " + str(heuristic.value))
         for i, board in enumerate(list_of_boards):
-            print("Solving board number " + str(i + 1))
+            print(training + " board number " + str(i + 1))
             data = Data(i, heuristic, time_limit, indicators, list_of_solutions[i], minimum_cost_paths[i],
                         use_difficulty)
             algorithm = get_algorithm(algorithm_num, board, data)
             solution = algorithm.solve_board()
-            data.add_optimality(solution, list_of_solutions[i])
-            if solution is not None and heuristic != Heuristic.REINFORCEMENT_LEARNING:
-                heuristic_data.add_data(data)
+            if heuristic != Heuristic.REINFORCEMENT_LEARNING:
+                data.add_optimality(solution, list_of_solutions[i])
+                if solution is not None:
+                    heuristic_data.add_data(data)
         if heuristic != Heuristic.REINFORCEMENT_LEARNING:
             heuristic_data.print_avgs()
     print("Finished")

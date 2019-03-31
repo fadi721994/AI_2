@@ -93,11 +93,18 @@ def calc_avg(data_list):
 # Parse cmd
 def parse_cmd():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-T', default=15, help='Time limit')
-    parser.add_argument('-A', default=1, help='Algorithm number')
-    parser.add_argument('-I', default=0, help='Indicator number')
-    parser.add_argument('-H', default=0, help='Heuristic number')
-    parser.add_argument('-D', default=0, help='Use difficulty as input')
+    parser.add_argument('-T', default=15, help='Time limit. Default is 15 seconds.')
+    parser.add_argument('-A', default=3, help='Algorithm number: 0 for A star (default), 1 for IDA star, 2 for '
+                                              'bi-directional A star, 3 for reinforcement learning.')
+    parser.add_argument('-I', default=0, help='Indicator number: 0 for \'No indicator\' (default), 1 for '
+                                              '\'Board freedom degree\', 2 for \'Overall free cars\', 3 for both '
+                                              '1 and 2.')
+    parser.add_argument('-H', default=0, help='Heuristic number: 0 for \'Blocking cars\' (default)'
+                                              ', 1 for \'Theoretical final position distanc\', 2 for \'Blocking'
+                                              ' cars and the cars in the way to their final position\', 3 for \''
+                                              'Theoretical final position distance and the cars in the way\'.')
+    parser.add_argument('-D', default=0, help='Use difficulty as input: 0 - Don\'t use difficulty level assistance'
+                                              '(default), 1 - Use difficulty level assistance.')
     args = parser.parse_args()
     try:
         time_limit = int(args.T)
@@ -110,7 +117,7 @@ def parse_cmd():
     try:
         algorithm = int(args.A)
         if algorithm > 3:
-            print("Algorithm can be either 0 for A star, 1 for IDA star, 2 for bi-directional A star or 3"
+            print("Algorithm can be either 0 for A star, 1 for IDA star, 2 for bi-directional A star or 3 for"
                   " reinforcement learning")
             exit(1)
     except ValueError:
@@ -120,8 +127,7 @@ def parse_cmd():
         indicator = int(args.I)
         if indicator > 3:
             print("Indicator can be either 0 for 'No indicator', 1 for 'Board freedom degree', "
-                  "2 for 'Overall free cars' or 3 for both 1 and 2."
-                  " reinforcement learning")
+                  "2 for 'Overall free cars' or 3 for both 1 and 2.")
             exit(1)
     except ValueError:
         print("Input entered for indicator is not a number")

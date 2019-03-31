@@ -77,9 +77,9 @@ class State:
         curr_special_cells = self.board.occupied_special_cells()
         prev_special_cells = self.prev_state.board.occupied_special_cells()
         if prev_special_cells < curr_special_cells:
-            return 1
-        elif prev_special_cells > curr_special_cells:
             return -1
+        elif prev_special_cells > curr_special_cells:
+            return 1
         return 0
 
     # Evaluate an indicator that is sent to the function. Returns 0, -1, or 1.

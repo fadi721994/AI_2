@@ -10,6 +10,7 @@ class ReinforcementLearning:
         self.data.actions = {}
         self.optimal_steps = self.data.min_cost_path.split(' ')[:-1]
 
+    # Check if solution is optimal.
     def is_solution_optimal(self):
         if self.solution is None:
             return False
@@ -30,6 +31,7 @@ class ReinforcementLearning:
         self.write_output()
         return self.solution
 
+    # Update the weights of the actions according to whether the step is optimal or not.
     def update_weights(self):
         if self.solution is None:
             return
@@ -40,6 +42,7 @@ class ReinforcementLearning:
             else:
                 self.update_single_action_entry(i, step, 1)
 
+    # Update the action weight with +1 or -1
     def update_single_action_entry(self, depth, step, value):
         if depth in self.data.actions:
             steps_hash = self.data.actions[depth]
@@ -62,6 +65,12 @@ class ReinforcementLearning:
                 self.solution = 'Not Found'
             file.write("Solution: " + self.solution + "\n")
             for depth, action_list in self.data.actions.items():
+                is_print = False
+                for step, weight in action_list.items():
+                    if weight != 0:
+                        is_print = True
+                if not is_print:
+                    continue
                 file.write("At Depth " + str(depth) + ":\n")
                 for step, weight in action_list.items():
                     if weight == 0:
