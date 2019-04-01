@@ -20,14 +20,11 @@ class ReinforcementLearning:
 
     # Main function that solves the board and updates the actions weights
     def solve_board(self):
-        i = 0
         while not self.is_solution_optimal():
-            if i == 2:
-                break
             algorithm = AStar(self.board, self.data)
             self.solution = algorithm.solve_board()
+            print(self.solution)
             self.update_weights()
-            i = i + 1
         self.write_output()
         return self.solution
 

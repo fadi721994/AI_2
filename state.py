@@ -95,9 +95,8 @@ class State:
     # Calculate the heuristic function and return its value.
     def calculate_h(self, data):
         if data.heuristic == Heuristic.REINFORCEMENT_LEARNING:
-            self.overall_h = self.overall_h + data.get_action_weight(self.depth, self.step_taken)
+            self.overall_h = data.get_action_weight(self.depth, self.step_taken)
             return self.overall_h
-            # return data.get_action_weight(self.depth, self.step_taken)
         if data.bidirectional_direction == BidirectionalDirection.BACKWARD:
             return self.board.calculate_backward_heuristic_value(data.heuristic, data.goal_board)
         heuristic_value = self.board.calculate_heuristic_value(data.heuristic)

@@ -75,5 +75,6 @@ class AStar:
                             else:
                                 open_list.check_and_update(expanded_state)
         if f_limit == math.inf:
-            self.data.finalize("FAILED", 0)
+            if self.data.heuristic != Heuristic.REINFORCEMENT_LEARNING:
+                self.data.finalize("FAILED", 0)
         return None
