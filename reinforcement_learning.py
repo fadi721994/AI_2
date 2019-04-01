@@ -1,4 +1,5 @@
 from a_star import AStar
+import utils
 
 
 class ReinforcementLearning:
@@ -23,7 +24,6 @@ class ReinforcementLearning:
         while not self.is_solution_optimal():
             algorithm = AStar(self.board, self.data)
             self.solution = algorithm.solve_board()
-            print(self.solution)
             self.update_weights()
         self.write_output()
         return self.solution
@@ -35,22 +35,24 @@ class ReinforcementLearning:
         steps = self.solution.split(' ')[:-1]
         for i, step in enumerate(steps):
             if i < len(self.optimal_steps) and self.optimal_steps[i] == step:
-                self.update_single_action_entry(i, step, -1)
+                solution_str = utils.get_solution_string(i, steps)
+                if solution_str in self.data.min_cost_path:
+                    self.update_single_action_entry(i, steps, -1)
+                else:
+                    self.update_single_action_entry(i, steps, 1)
             else:
-                self.update_single_action_entry(i, step, 1)
+                self.update_single_action_entry(i, steps, 1)
 
     # Update the action weight with +1 or -1
-    def update_single_action_entry(self, depth, step, value):
-        if depth in self.data.actions:
-            steps_hash = self.data.actions[depth]
-            if step in steps_hash:
-                steps_hash[step] = steps_hash[step] + value
-            else:
-                steps_hash[step] = value
+    def update_single_action_entry(self, depth, steps, value):
+        solution = ''
+        for i in range(depth + 1):
+            solution = solution + steps[i] + ' '
+        solution = solution.strip()
+        if solution in self.data.actions:
+            self.data.actions[solution] = self.data.actions[solution] + value
         else:
-            self.data.actions[depth] = dict()
-            steps_hash = self.data.actions[depth]
-            steps_hash[step] = value
+            self.data.actions[solution] = value
 
     # Create the output file "reinforcement learning.txt"
     def write_output(self):
@@ -61,26 +63,6 @@ class ReinforcementLearning:
             if self.solution is None:
                 self.solution = 'Not Found'
             file.write("Solution: " + self.solution + "\n")
-            for depth, action_list in self.data.actions.items():
-                is_print = False
-                for step, weight in action_list.items():
-                    if weight != 0:
-                        is_print = True
-                if not is_print:
-                    continue
-                file.write("At Depth " + str(depth) + ":\n")
-                for step, weight in action_list.items():
-                    if weight == 0:
-                        continue
-                    output_str = step[0]
-                    if step[1] == "U":
-                        output_str = output_str + " Up"
-                    elif step[1] == "D":
-                        output_str = output_str + " Down"
-                    elif step[1] == "R":
-                        output_str = output_str + " Right"
-                    else:
-                        output_str = output_str + " Left"
-                    output_str = output_str + " " + step[2] + ":  " + str(weight)
-                    file.write("    " + output_str + "\n")
+            for solution, action_list in self.data.actions.items():
+                file.write(str(solution) + ": " + str(action_list) + "\n")
             file.close()

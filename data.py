@@ -131,18 +131,14 @@ class Data:
             file.write(opt_str + "\n")
             file.write("---------------------------------------------------------------\n\n\n")
 
-    def get_action_weight(self, depth, step_taken):
-        if step_taken is None:
-            return 0
-        step_str = step_taken.to_string()
-        if str(depth) in self.actions:
-            steps_hash = self.actions[str(depth)]
-            if step_str in steps_hash:
-                return steps_hash[step_str].weight
-            else:
-                return 0
-        else:
-            return 0
+    def get_action_weight(self, solution):
+        steps = solution.split(' ')
+        overall = 0
+        for i, step in enumerate(steps):
+            solution_str = utils.get_solution_string(i, steps)
+            if solution_str in self.actions:
+                overall = overall + self.actions[solution_str]
+        return overall
 
     def get_depth_best_moves(self, depth, cars):
         if depth not in self.actions:

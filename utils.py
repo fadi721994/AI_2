@@ -94,7 +94,7 @@ def calc_avg(data_list):
 def parse_cmd():
     parser = argparse.ArgumentParser()
     parser.add_argument('-T', default=15, help='Time limit. Default is 15 seconds.')
-    parser.add_argument('-A', default=0, help='Algorithm number: 0 for A star (default), 1 for IDA star, 2 for '
+    parser.add_argument('-A', default=3, help='Algorithm number: 0 for A star (default), 1 for IDA star, 2 for '
                                               'bi-directional A star, 3 for reinforcement learning.')
     parser.add_argument('-I', default=0, help='Indicator number: 0 for \'No indicator\' (default), 1 for '
                                               '\'Board freedom degree\', 2 for \'Overall free cars\', 3 for both '
@@ -256,3 +256,11 @@ def initialize_actions(cars):
                 entry = car_name + get_direction_initial(Direction.RIGHT) + str(i + 1)
                 actions[entry] = 0
     return actions
+
+# Update the action weight with +1 or -1
+def get_solution_string(depth, steps):
+    solution = ''
+    for i in range(depth + 1):
+        solution = solution + steps[i] + ' '
+    solution = solution.strip()
+    return solution
